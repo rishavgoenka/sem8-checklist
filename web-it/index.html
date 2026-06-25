@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Tech Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../theme.js"></script>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="header-inner">
+            <div class="header-title-container">
+                <a href="../" class="back-btn" aria-label="Go back to home">
+                    <i class="ti ti-arrow-left" aria-hidden="true"></i>
+                </a>
+                <div class="header-title-wrapper">
+                    <div class="header-title">
+                        <i class="ti ti-notes" aria-hidden="true"></i>
+                        Web Tech Study Planner
+                    </div>
+                    <div class="header-sub">Progress saved in your browser — pick up where you left off</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="themeManager.toggle()" aria-label="Toggle theme">
+                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i> <span class="theme-toggle-label">Dark Mode</span>
+                </button>
+                <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
+                    <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" role="main">
+
+        <!-- Global progress -->
+        <div class="global-progress" aria-label="Overall progress">
+            <div>
+                <div class="gp-stat-label">completed</div>
+                <div class="gp-stat-num"><span id="done-count">0</span> / <span id="total-count">0</span></div>
+            </div>
+            <div class="gp-bar-wrap">
+                <div class="gp-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                    id="prog-aria">
+                    <div class="gp-bar-fill" id="prog-bar"></div>
+                </div>
+                <div class="gp-bar-labels">
+                    <span>0%</span><span>50%</span><span>100%</span>
+                </div>
+            </div>
+            <div class="gp-pct" id="prog-pct" aria-live="polite">0%</div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-checklist"
+                id="tab-checklist" onclick="checklist.switchTab('checklist')">
+                <i class="ti ti-checkbox" aria-hidden="true"></i> Checklist
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-sequence" id="tab-sequence"
+                onclick="checklist.switchTab('sequence')">
+                <i class="ti ti-calendar-event" aria-hidden="true"></i> Study Sequence
+            </button>
+        </div>
+
+        <!-- Checklist panel -->
+        <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <!-- Legend -->
+            <div class="legend" aria-label="Legend">
+                <span class="legend-label">Day:</span>
+                <span class="day-badge day1">Day 1</span>
+                <span class="day-badge day2">Day 2</span>
+                <span class="legend-label" style="margin-left:6px">Priority:</span>
+                <span class="priority-tag p-new">new</span>
+                <span class="priority-tag p-revise">revise</span>
+                <span class="priority-tag p-strong">strong</span>
+            </div>
+            <div id="sections-container"></div>
+        </div>
+
+        <!-- Sequence panel -->
+        <div class="panel" id="panel-sequence" role="tabpanel" aria-labelledby="tab-sequence">
+            <div class="seq-grid">
+                <div class="seq-card">
+                    <div class="seq-day-title d1">
+                        <span class="day-badge day1">Day 1</span>
+                        Networking + Security
+                    </div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>Networking overview, Intranet / Extranet / Internet</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>TCP/IP — handshaking, flow / error / congestion control</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>IP subnetting, NAT, iptables, IPv4 vs IPv6</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>Internet routing — intra / inter domain, unicast / multicast</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>DNS, Telnet, FTP, HTTP (WWW topics)</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>POP3, SMTP (email)</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>VoIP, RSVP, RTP, RTCP, RTSP, IPTV</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>Threats — viruses, trojans, DoS, spoofing</div>
+                    <div class="seq-slot"><span class="seq-dot d1-dot"></span>Network security — SSL, SSH, VPN, IPSec, Firewall</div>
+                </div>
+                <div class="seq-card">
+                    <div class="seq-day-title d2">
+                        <span class="day-badge day2">Day 2</span>
+                        Code, Markup &amp; Java
+                    </div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>HTML — elements, attributes, forms, tables, CSS basics</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>Image Maps, XML, XHTML</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>JavaScript — basics, objects, loops, functions</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>JavaScript — regex, validation, cookies</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>CGI scripts — GET, POST, environment variables</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>PERL — variables, conditions, arrays, hashes <em style="color:var(--coral-600)">(new!)</em></div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>PERL — regex, file handling, I/O <em style="color:var(--coral-600)">(new!)</em></div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>Java Applets — lifecycle, parameters, update method</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>Java Client-Server — Socket, RMI</div>
+                    <div class="seq-slot"><span class="seq-dot d2-dot"></span>Search engine — crawler, indexing, PageRank, SEO</div>
+                </div>
+            </div>
+            <div class="seq-tip">
+                <strong>Why this order?</strong> Networking topics come first — you grasp them quickly, so Day 1 locks in your strongest area first. Day 2 starts with HTML/XML (lightest revision), then JavaScript including regex, then Perl immediately after — because Perl's regex syntax overlaps with JS, so concepts stay warm. CGI slots in naturally between them. Java Applets and Client-Server go last when energy dips. <strong>Perl is your biggest wildcard</strong> — budget ~2.5 hrs, focus on hashes, regex, and file I/O.
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        window.subjectId = 'web-it';
+        window.checklistData = [
+            {
+                id: 'networking-intro',
+                title: 'Introduction to Networking',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Overview of networking concepts',
+                    'Network of Networks',
+                    'Intranet vs Extranet',
+                    'Internet fundamentals'
+                ]
+            },
+            {
+                id: 'tcpip',
+                title: 'Review of TCP/IP',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'TCP/IP features overview',
+                    'Segment structure',
+                    'Three-Way Handshaking',
+                    'Flow Control',
+                    'Error Control',
+                    'Congestion Control',
+                    'IP Datagram',
+                    'IPv4 vs IPv6 differences'
+                ]
+            },
+            {
+                id: 'subnetting',
+                title: 'IP Subnetting & Addressing',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Classful Addressing (A, B, C, D, E)',
+                    'Classless Addressing (CIDR)',
+                    'Subnetting calculations',
+                    'NAT (Network Address Translation)',
+                    'IP Masquerading',
+                    'IP Tables basics'
+                ]
+            },
+            {
+                id: 'routing',
+                title: 'Internet Routing Protocol',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Intra-Domain Routing (IGP)',
+                    'Inter-Domain Routing (EGP / BGP)',
+                    'Unicast Routing',
+                    'Multicast Routing',
+                    'Broadcast'
+                ]
+            },
+            {
+                id: 'www',
+                title: 'World Wide Web',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Domain and Sub-domain',
+                    'Address Resolution',
+                    'DNS (Domain Name System)',
+                    'Telnet',
+                    'FTP (File Transfer Protocol)',
+                    'HTTP protocol'
+                ]
+            },
+            {
+                id: 'email',
+                title: 'Electronic Mail',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'POP3 protocol',
+                    'SMTP protocol'
+                ]
+            },
+            {
+                id: 'voip',
+                title: 'Internet Telephony',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Introduction to Internet Telephony',
+                    'VoIP overview'
+                ]
+            },
+            {
+                id: 'multimedia',
+                title: 'Multimedia Applications',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Multimedia over IP overview',
+                    'RSVP',
+                    'RTP',
+                    'RTCP',
+                    'RTSP',
+                    'Streaming media',
+                    'Codecs and Plugins',
+                    'IPTV'
+                ]
+            },
+            {
+                id: 'threats',
+                title: 'Threats',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Malicious code — viruses',
+                    'Trojan horses',
+                    'Worms',
+                    'Eavesdropping',
+                    'Spoofing',
+                    'Modification attacks',
+                    'Denial of Service (DoS) attacks'
+                ]
+            },
+            {
+                id: 'security',
+                title: 'Network Security Techniques',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Password and Authentication',
+                    'VPN',
+                    'IP Security (IPSec)',
+                    'Security in Electronic Transactions',
+                    'SSL (Secure Socket Layer)',
+                    'SSH (Secure Shell)'
+                ]
+            },
+            {
+                id: 'firewall',
+                title: 'Firewall',
+                day: 1,
+                tag: 'strong',
+                items: [
+                    'Introduction to firewalls',
+                    'Packet filtering',
+                    'Stateful inspection',
+                    'Application layer firewall',
+                    'Proxy firewall'
+                ]
+            },
+            {
+                id: 'html',
+                title: 'HTML',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Introduction & editors',
+                    'Elements and Attributes',
+                    'Headings and Paragraphs',
+                    'Text Formatting tags',
+                    'Links (<a> tag)',
+                    'Head section & meta',
+                    'Tables',
+                    'Lists (ordered, unordered)',
+                    'Block elements & layout',
+                    'CSS (inline, internal, external)',
+                    'Forms',
+                    'iFrames',
+                    'Colors, colornames, colorvalues'
+                ]
+            },
+            {
+                id: 'imagemaps',
+                title: 'Image Maps',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    '<map> and <area> tags',
+                    'Attributes of image area (shape, coords, href)'
+                ]
+            },
+            {
+                id: 'xml',
+                title: 'XML (Extensible Markup Language)',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Introduction to XML',
+                    'XML Tree structure',
+                    'XML Syntax rules',
+                    'XML Elements',
+                    'XML Attributes',
+                    'XML Validation (DTD & XSD)',
+                    'Viewing XML in browser',
+                    'XHTML in brief'
+                ]
+            },
+            {
+                id: 'javascript',
+                title: 'JavaScript',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Basics & statements',
+                    'Comments',
+                    'Variables',
+                    'Comparison operators',
+                    'Conditions (if / else)',
+                    'Switch statement',
+                    'Loops',
+                    'Break / continue',
+                    'String object',
+                    'Array object',
+                    'Boolean',
+                    'Regular Expressions (Regex)',
+                    'Functions',
+                    'Error handling',
+                    'Form Validation'
+                ]
+            },
+            {
+                id: 'cookies',
+                title: 'Cookies',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Definition of cookies',
+                    'Create and store a cookie (example)'
+                ]
+            },
+            {
+                id: 'cgi',
+                title: 'CGI Scripts',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Introduction to CGI',
+                    'Environment Variables',
+                    'GET method',
+                    'POST method'
+                ]
+            },
+            {
+                id: 'perl',
+                title: 'PERL',
+                day: 2,
+                tag: 'new',
+                items: [
+                    'Introduction to Perl',
+                    'Variables (scalar, array, hash)',
+                    'Conditions (if / elsif / else)',
+                    'Loops (for, while, foreach)',
+                    'Arrays',
+                    'Implementing data structures',
+                    'Hashes',
+                    'String operations',
+                    'Regular Expressions in Perl',
+                    'File handling',
+                    'I/O handling'
+                ]
+            },
+            {
+                id: 'applets',
+                title: 'Java Applets',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Container Class',
+                    'Components',
+                    'Applet Life Cycle',
+                    'Update method',
+                    'Parameter passing in applets',
+                    'Applet applications'
+                ]
+            },
+            {
+                id: 'java-cs',
+                title: 'Client-Server Programming in Java',
+                day: 2,
+                tag: 'revise',
+                items: [
+                    'Java Socket programming',
+                    'Java RMI (Remote Method Invocation)'
+                ]
+            },
+            {
+                id: 'search',
+                title: 'Search Engine & Web Crawler',
+                day: 2,
+                tag: 'strong',
+                items: [
+                    'Definition of search engines',
+                    'Metadata',
+                    'Web Crawler',
+                    'Indexing',
+                    'PageRank algorithm',
+                    'Overview of SEO'
+                ]
+            }
+        ];
+    </script>
+    <script src="../checklist.js"></script>
+</body>
+
+</html>

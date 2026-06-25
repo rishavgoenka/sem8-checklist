@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce &amp; ERP Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../theme.js"></script>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="header-inner">
+            <div class="header-title-container">
+                <a href="../" class="back-btn" aria-label="Go back to home">
+                    <i class="ti ti-arrow-left" aria-hidden="true"></i>
+                </a>
+                <div class="header-title-wrapper">
+                    <div class="header-title">
+                        <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+                        Ecommerce &amp; ERP Study Planner
+                    </div>
+                    <div class="header-sub">Exam on 2 July 2026</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="themeManager.toggle()" aria-label="Toggle theme">
+                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i> <span class="theme-toggle-label">Dark Mode</span>
+                </button>
+                <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
+                    <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" role="main">
+
+        <!-- Global progress -->
+        <div class="global-progress" aria-label="Overall progress">
+            <div>
+                <div class="gp-stat-label">completed</div>
+                <div class="gp-stat-num"><span id="done-count">0</span> / <span id="total-count">0</span></div>
+            </div>
+            <div class="gp-bar-wrap">
+                <div class="gp-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                    id="prog-aria">
+                    <div class="gp-bar-fill" id="prog-bar"></div>
+                </div>
+                <div class="gp-bar-labels">
+                    <span>0%</span><span>50%</span><span>100%</span>
+                </div>
+            </div>
+            <div class="gp-pct" id="prog-pct" aria-live="polite">0%</div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-checklist"
+                id="tab-checklist" onclick="checklist.switchTab('checklist')">
+                <i class="ti ti-checkbox" aria-hidden="true"></i> Checklist
+            </button>
+        </div>
+
+        <!-- Checklist panel -->
+        <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <div id="sections-container"></div>
+        </div>
+
+    </main>
+
+    <script>
+        window.subjectId = 'e-comm';
+        window.examDate = '2 July 2026';
+        window.checklistData = [];
+    </script>
+    <script src="../checklist.js"></script>
+</body>
+
+</html>
