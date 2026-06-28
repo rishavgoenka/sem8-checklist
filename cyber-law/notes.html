@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
     <link rel="stylesheet" href="../styles.css" />
     <script src="../theme.js"></script>
-    <script src="content.js"></script>
 </head>
 
 <body class="notes-page">
@@ -47,201 +46,37 @@
     <!-- ── UNIT JUMP NAV ── -->
     <nav class="notes-unit-nav" aria-label="Jump to unit" id="unit-nav">
         <div class="notes-unit-nav-inner" id="unit-nav-inner">
-            <!-- Populated by JS -->
+            <!-- Populated by notes-viewer.js -->
         </div>
     </nav>
 
     <!-- ── MAIN CONTENT ── -->
     <main class="notes-main" id="notes-main">
-        <!-- Populated by JS -->
+        <!-- Populated by notes-viewer.js -->
     </main>
 
+    <!-- ── Subject Config ── -->
     <script>
-        // ── UNIT NAV ICONS (Tabler icon classes, no emojis) ──────────────────────────
-        const UNIT_ICONS = {
-            'unit-1': 'ti-shield-lock',
-            'unit-2': 'ti-device-mobile',
-            'unit-3': 'ti-sword',
-            'unit-4a': 'ti-fish-hook',
-            'unit-4b': 'ti-scale',
-            'unit-4c': 'ti-key',
-            'unit-4d': 'ti-world',
-            'master': 'ti-book',
-            'quick': 'ti-bolt',
+        window.notesConfig = {
+            subject: 'Cyber Law & Ethics',
+            code: 'OEC-CS801B',
+            checklistUrl: '../cyber-law/',
+            // Tabler icon names (without "ti-"), one per unit in order
+            unitIcons: [
+                'shield-lock',       // Unit 1 - Introduction to Cybercrime
+                'device-mobile',     // Unit 2 - Mobile & Wireless
+                'sword',             // Unit 3 - Tools & Methods
+                'fish-hook',         // Unit 4A - Phishing & Identity Theft
+                'scale',             // Unit 4B - IT Act & Legal Framework
+                'key',               // Unit 4C - Digital Signatures & PKI
+                'world',             // Unit 4D - Cyber Ethics
+                'book',              // Master Acronym Reference
+                'bolt'               // Quick Revision
+            ]
         };
-
-        const CHECKLIST_MAP = {
-            'unit-1-introduction-to-cybercrime': '../cyber-law/#cybercrime-basics',
-            'unit-2-cybercrime-on-mobile-wireless-devices': '../cyber-law/#mobile-security',
-            'unit-3-tools-methods-used-in-cybercrime': '../cyber-law/#attack-tools',
-            'unit-4a-phishing-identity-theft': '../cyber-law/#phishing-identity',
-            'unit-4b-indian-it-act-2000-legal-framework': '../cyber-law/#it-act',
-            'unit-4c-digital-signatures-public-key-infrastructure-pki': '../cyber-law/#digital-sig-pki',
-            'unit-4d-cyber-ethics-cyberspace-related-concepts': '../cyber-law/#cyber-ethics',
-        };
-
-        function getIcon(id) {
-            for (const [k, v] of Object.entries(UNIT_ICONS)) {
-                if (id.startsWith(k)) return v;
-            }
-            return 'ti-file-text';
-        }
-
-        function slugify(text) {
-            return text
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
-        }
-
-        // ── BUILD PAGE ────────────────────────────────────────────────────────────────
-        function buildPage() {
-            buildUnitNav();
-            buildAllUnits();
-            initScrollspy();
-
-            // Check URL hash and scroll to it
-            const hash = window.location.hash.slice(1);
-            if (hash) {
-                setTimeout(() => {
-                    const el = document.getElementById(hash);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 150);
-            }
-        }
-
-        // Listen for hash changes on the same page
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.slice(1);
-            if (hash) {
-                const el = document.getElementById(hash);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-
-        function buildUnitNav() {
-            const inner = document.getElementById('unit-nav-inner');
-            inner.innerHTML = '';
-            CYBER_NOTES.forEach((sec, i) => {
-                const btn = document.createElement('a');
-                btn.className = 'notes-unit-nav-item' + (i === 0 ? ' active' : '');
-                btn.id = 'nav-' + sec.id;
-                btn.href = '#' + sec.id;
-                btn.setAttribute('aria-label', 'Jump to ' + sec.title);
-                btn.innerHTML = `<i class="ti ${getIcon(sec.id)}" aria-hidden="true"></i><span>${shortTitle(sec.title)}</span>`;
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const el = document.getElementById(sec.id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    window.history.replaceState(null, '', '#' + sec.id);
-                });
-                inner.appendChild(btn);
-            });
-        }
-
-        function shortTitle(title) {
-            // Shorten long titles for the nav pill
-            return title
-                .replace(/^UNIT \d+[A-Z]? — /, '')
-                .replace(/\s*&\s*Public Key Infrastructure.*/, ' & PKI')
-                .replace(/Cyber Ethics.*/, 'Cyber Ethics')
-                .replace(/Tools & Methods.*/, 'Tools & Methods')
-                .replace(/Introduction to /, '')
-                .replace(/\s*\(OEC.*/, '');
-        }
-
-        function buildAllUnits() {
-            const main = document.getElementById('notes-main');
-            main.innerHTML = '';
-
-            CYBER_NOTES.forEach((sec, i) => {
-                // Clean headings: remove wrapping <strong> from h2/h3/h4
-                let content = sec.content;
-                content = content.replace(/<h2><strong>(.*?)<\/strong><\/h2>/g, '<h2>$1</h2>');
-                content = content.replace(/<h3><strong>(.*?)<\/strong><\/h3>/g, '<h3>$1</h3>');
-                content = content.replace(/<h4><strong>(.*?)<\/strong><\/h4>/g, '<h4>$1</h4>');
-                // Clean exam tip emojis — replace 📝 with a note marker
-                content = content.replace(/📝\s*/g, '');
-
-                const topicCount = (content.match(/<h2/g) || []).length;
-                const tableCount = (content.match(/<table/g) || []).length;
-
-                const checklistHref = CHECKLIST_MAP[sec.id] || '../cyber-law/';
-
-                // Convert h2 elements to have slugified IDs
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = content;
-                tempDiv.querySelectorAll('h2').forEach(h2 => {
-                    h2.id = slugify(h2.textContent);
-                });
-                content = tempDiv.innerHTML;
-
-                const unit = document.createElement('section');
-                unit.className = 'notes-unit';
-                unit.id = sec.id;
-
-                unit.innerHTML = `
-                    <div class="notes-unit-header">
-                        <div class="notes-unit-icon">
-                            <i class="ti ${getIcon(sec.id)}" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            <div class="notes-unit-title">${sec.title}</div>
-                            <div class="notes-unit-meta">
-                                <span><i class="ti ti-layout-list" aria-hidden="true"></i> ${topicCount} sub-topics</span>
-                                <span><i class="ti ti-table" aria-hidden="true"></i> ${tableCount} tables</span>
-                            </div>
-                        </div>
-                    </div>
-                    ${checklistHref ? `<a href="${checklistHref}" class="notes-checklist-chip" aria-label="Open checklist for this unit"><i class="ti ti-checkbox" aria-hidden="true"></i> Track in checklist</a>` : ''}
-                    <div class="notes-doc">${content}</div>
-                `;
-
-                main.appendChild(unit);
-
-                // Add divider between units (not after last)
-                if (i < CYBER_NOTES.length - 1) {
-                    const divider = document.createElement('div');
-                    divider.className = 'notes-unit-divider';
-                    main.appendChild(divider);
-                }
-            });
-        }
-
-        // ── SCROLLSPY ────────────────────────────────────────────────────────────────
-        function initScrollspy() {
-            const navItems = document.querySelectorAll('.notes-unit-nav-item');
-            const sections = document.querySelectorAll('.notes-unit');
-            if (!sections.length) return;
-
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.id;
-                            navItems.forEach(item => {
-                                item.classList.toggle('active', item.id === 'nav-' + id);
-                            });
-                            // Scroll the active nav item into view (horizontal)
-                            const activeItem = document.getElementById('nav-' + id);
-                            if (activeItem) {
-                                activeItem.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
-                            }
-                        }
-                    });
-                },
-                {
-                    rootMargin: '-110px 0px -60% 0px',
-                    threshold: 0
-                }
-            );
-
-            sections.forEach(sec => observer.observe(sec));
-        }
-
-        // ── INIT ─────────────────────────────────────────────────────────────────────
-        document.addEventListener('DOMContentLoaded', buildPage);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="../notes-viewer.js"></script>
 
 </body>
 

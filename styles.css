@@ -1437,3 +1437,66 @@ body {
     font-size: 11px;
     color: var(--text-secondary);
 }
+
+/* ── MOBILE TABLE SCROLL ─────────────────────────────────────────────────────
+   Wraps every table in the notes doc in a scrollable container on small screens.
+   The .table-scroll wrapper is injected by notes-viewer.js at parse time.
+─────────────────────────────────────────────────────────────────────────── */
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+    margin: 1em 0;
+}
+
+.table-scroll table {
+    margin: 0;               /* remove double margin from .notes-doc table */
+    min-width: 520px;        /* force horizontal scroll before table squishes */
+}
+
+/* Subtle scrollbar styling for table wrappers */
+.table-scroll::-webkit-scrollbar { height: 4px; }
+.table-scroll::-webkit-scrollbar-track { background: var(--bg-secondary); }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--border-med); border-radius: 2px; }
+
+/* ── NOTES LOADING STATE ──────────────────────────────────────────────────── */
+.notes-loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-tertiary);
+    font-size: 15px;
+    letter-spacing: 0.01em;
+}
+
+/* ── NOTES PAGE MOBILE RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .notes-unit-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .notes-unit-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+    }
+
+    .notes-unit-title {
+        font-size: 17px;
+    }
+
+    .notes-doc h2 {
+        font-size: 15px;
+    }
+
+    .notes-doc h3 {
+        font-size: 13.5px;
+    }
+
+    .notes-doc .notes-card-highlight {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
