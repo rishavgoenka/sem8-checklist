@@ -1,10 +1,9 @@
-MAKAUT 8th Semester - CSE
+# Cyber Law & Ethics — OEC-CS801B
+### MAKAUT 8th Sem · CSE/IT · Full Marks: 70 · Time: 3 Hours
 
-**Complete Study Notes**
+> **Exam pattern:** Group A — 10×1 = 10 marks (answer any 10 of 12) | Group B — 3×5 = 15 marks (answer any 3 of 5) | Group C — 3×15 = 45 marks (answer any 3 of 5–6)
 
-**Cyber Law & Ethics (OEC-CS801B)**
-
-Exam: 30 June 2026 | Target: 70-80% Coverage
+_PYQ Stars: ★★★★★ = appears every year | ★★★★ = very likely | ★★★ = probable_
 
 **📋 What This Document Covers**
 
@@ -24,7 +23,7 @@ Exam: 30 June 2026 | Target: 70-80% Coverage
 
 ✓ IT Act 2000 Complete Sections Reference Table
 
-_PYQ Frequency: ★★★★★ topics marked throughout_
+✓ Last-Minute Revision — Key Points, Traps & Memory Tricks
 
 # **Table of Contents**
 
@@ -117,7 +116,9 @@ Key characteristics of cyberspace:
 
 ## **1.4 Categories of Cybercrime & How Criminals Plan Attacks**
 
-### **1.4.1 The Five Stages of Attack Planning**
+### **1.4.1 The Five Stages of Attack Planning** ★★★★ (PYQ 2023 Group C Q7)
+
+_Memory trick: **"Really Skilled Geeks Make Criminals"** = Reconnaissance → Scanning → Gaining Access → Maintaining Access → Covering Tracks_
 
 Criminals do not attack randomly. They follow a systematic methodology. Understanding this process is crucial for both defence and exam answers.
 
@@ -128,6 +129,8 @@ Criminals do not attack randomly. They follow a systematic methodology. Understa
 | 3         | Gaining Access (Exploitation)    | Use discovered vulnerabilities to break into the system. This is the actual "hack" - executing exploits, cracking passwords, injecting malicious code, or using social engineering. | Metasploit, SQL injection, buffer overflow exploits, phishing, brute force tools.                  | Patching, input validation, multi-factor authentication, WAF.                    |
 | 4         | Maintaining Access (Persistence) | Ensure continued access even if the initial vulnerability is patched. Install backdoors, rootkits, or Trojans so the attacker can return anytime.                                   | Backdoor installation, rootkits, Trojans, creating new admin accounts, scheduled tasks.            | Integrity monitoring, regular audits, endpoint detection.                        |
 | 5         | Covering Tracks                  | Erase all evidence of the intrusion - delete or modify log files, use steganography, tunnel traffic through proxies - to avoid detection and prosecution.                           | Log clearing, timestomping, steganography, using TOR/VPN/proxy chains.                             | Centralised log management (SIEM), write-protected logs, forensic monitoring.    |
+
+**What is Reconnaissance?** _(PYQ 2023 Group C)_ The first stage of hacking where an attacker gathers as much information about the target as possible **without directly attacking it**. It is purely passive. The attacker uses public sources — WHOIS, DNS records, social media, company websites, job listings — to map the target's network, identify key personnel, and find potential weak points. No contact with the target system is made during this stage.
 
 _📝 EXAM TIP: Active vs Passive attacks appear as Group A fill-in EVERY year. Memorise the comparison table below cold._
 
@@ -255,7 +258,7 @@ Bluetooth is a short-range wireless technology (typically 10m, Class 1 up to 100
 | Bluebugging     | The most severe Bluetooth attack - full remote CONTROL of the victim's phone. The attacker can make calls, send SMS, read messages, intercept calls, and access the internet through the victim's device - all without the victim's knowledge. | Exploits AT command interface vulnerabilities. Attacker connects to the phone's serial communication interface, giving them control as if physically holding the phone. | Complete device control - call logs, SMS, internet access, microphone (in some cases).                | Update firmware regularly - most modern phones (post-2003) patched this. Disable Bluetooth discovery in public. |
 | BlueSmack (DoS) | A Denial of Service attack against Bluetooth devices. The attacker sends an oversized L2CAP (Logical Link Control and Adaptation Protocol) echo request packet that overwhelms and crashes the target device.                                  | Like a Bluetooth-version of a Ping of Death attack - sends a packet larger than the L2CAP specification allows, causing the receiving device to crash or freeze.        | No data stolen - device becomes temporarily unavailable / crashes.                                    | Keep Bluetooth off in public. Use updated devices that validate packet sizes.                                   |
 
-_📝 EXAM TIP: Bluesnarfing = Data THEFT (contacts, messages). Bluebugging = Remote CONTROL of device. Bluejacking = Harmless SPAM messages only. This distinction is a classic exam trap._
+> **📝 EXAM TRAP:** Bluesnarfing = Data THEFT (contacts, messages). Bluebugging = Remote CONTROL of device. Bluejacking = Harmless SPAM messages only. **This distinction is asked every year.**
 
 ## **2.4 Attacks on Mobile/Cell Phones**
 
@@ -543,7 +546,10 @@ How a typical phishing attack works:
 | Clone Phishing    | Attacker creates a nearly identical copy of a legitimate email (that the victim actually received before) with the link replaced by a malicious one. Claims to be a "resend" due to broken link.            | Highly convincing because the format, content, and sender address look exactly like a real email the victim has received.                                | Victim received a delivery notification email → attacker clones it exactly but replaces the tracking link with malware.               | Victims of previous legitimate communications.                |
 | Angler Phishing   | Phishing via social media - attacker creates fake customer service accounts for popular brands. When victims complain publicly on social media, the fake account "helps" them and asks for credentials.     | Exploits the expectation that brands monitor social media. Victim approaches the attacker thinking they found legitimate support.                        | Customer tweets "@AmazonHelp my order is wrong". Fake @AmazonHelp1 account replies: "Please DM us your account details to resolve."   | Social media users seeking customer support.                  |
 
-_📝 EXAM TIP: PHISHING vs PHARMING distinction is a classic exam trap. Key difference: Phishing requires the victim to click a link and be DECEIVED. Pharming redirects automatically at the DNS level - victim can type the correct URL and STILL land on the fake site. No click required in pharming._
+> **📝 EXAM TRAP — Phishing vs Pharming:**
+> - **Phishing:** Victim **clicks a fake link** and is **deceived** into entering credentials
+> - **Pharming:** Victim types the **correct URL** but DNS is poisoned → **redirected to fake site automatically**. No click needed.
+> This distinction is asked almost every year.
 
 ## **4.2 Identity Theft**
 
@@ -564,6 +570,16 @@ _📝 EXAM TIP: PHISHING vs PHARMING distinction is a classic exam trap. Key dif
 | Synthetic Identity Theft | Creating a new false identity by combining real and fabricated information (e.g., real SSN with a fake name) - the most difficult type to detect. | Monitor credit reports for unknown accounts.                                                       |
 
 ### **4.2.2 Online Identity - What Comprises Your Digital Identity**
+
+**What is a Cookie?** ★★★ (PYQ 2025 Group A)
+
+**Cookie:** Small text files stored by websites on your browser to remember your session, preferences, and track behaviour. Two types:
+- **Session cookies** — expire when browser closes; used for login sessions (can be hijacked for account takeover)
+- **Persistent/Tracking cookies** — remain after browser closes; reveal browsing habits and enable cross-site tracking
+
+**What is SSL?** ★★★ (PYQ 2025 Group A)
+
+**SSL (Secure Sockets Layer):** A cryptographic protocol for **encrypted client-server communication** — predecessor to TLS. Often used interchangeably with TLS. SSL/TLS creates an encrypted tunnel between browser and server so that data (passwords, card numbers) transmitted between them cannot be intercepted in transit. Identified by **HTTPS** and the padlock icon in the browser address bar.
 
 | **Identifier**       | **What It Is**                                                                                                             | **Risk if Stolen**                                                                        |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
@@ -1034,3 +1050,133 @@ _Read this on the day before the exam. Every item is exam-ready._
 | Virus       | YES             | YES (via host)       | YES (runs host file) | ATTACHES     |
 | Worm        | NO              | YES (independently)  | NO (exploits vuln)   | SPREADS      |
 | Trojan      | NO              | NO                   | YES (deceived)       | DISGUISES    |
+
+---
+
+# 🔥 Last-Minute Revision — High-Priority Skipped Topics
+
+_Read this section if you have < 2 hours left. These are commonly skipped but important points._
+
+## LM-1: E-Commerce Security Concepts ★★★★
+
+**E-Commerce Security Requirements:**
+- **Confidentiality** — customer data and payment info must be encrypted end-to-end (SSL/TLS)
+- **Integrity** — order data must not be altered in transit (digital signatures, checksums)
+- **Authentication** — verifying both buyer AND seller identity before a transaction (SET protocol, digital certificates)
+- **Non-repudiation** — neither party can deny the transaction occurred (digital signatures create legal proof)
+- **Availability** — website must be up 24/7; protected from DoS/DDoS attacks
+
+**SET (Secure Electronic Transaction):** Developed by Visa + Mastercard. Uses dual digital certificates — one for the customer, one for the merchant. The bank processes the card number without the merchant ever seeing it. **Key point for exam:** SET does NOT encrypt the entire message — it uses dual-signature technique so each party sees only what they need to.
+
+## LM-2: CERT-In ★★★
+
+**CERT-In (Indian Computer Emergency Response Team):** India's national nodal agency for responding to cybersecurity incidents. Operates under the **Ministry of Electronics and Information Technology (MeitY)**.
+
+Key functions:
+- Collects, analyses, and disseminates information on cyber incidents
+- Issues alerts, advisories, and guidelines
+- Coordinates response to major cybersecurity incidents affecting India
+- Operates 24×7 incident response
+- Organizations must report cyber incidents to CERT-In within **6 hours** of detection (2022 mandate)
+
+## LM-3: Steganography vs Cryptography ★★★
+
+| | Steganography | Cryptography |
+|---|---|---|
+| Goal | **Hide the existence** of a message | **Scramble the content** of a message |
+| Visibility | The message is invisible — no one knows it exists | Everyone can see there IS a message, just can't read it |
+| Method | Hides data within innocent-looking files (images, audio, video) | Uses encryption algorithms (AES, RSA) to transform data |
+| Detection | Very hard — requires steganalysis tools | Obvious — encrypted data looks like random bytes |
+| Example | Hiding text in the LSB of pixel values in a PNG image | Encrypting a document with AES-256 |
+| Used by attackers for | Covering tracks — hiding malware inside innocent files | Encrypting C&C communications, ransomware |
+
+## LM-4: Keylogger Types ★★★
+
+| Type | How It Works | Detection Difficulty |
+|---|---|---|
+| Software Keylogger | Runs as background process, hooks into OS keyboard API | Detected by antivirus if signature-based; harder if polymorphic |
+| Hardware Keylogger | Physical device plugged between keyboard and computer USB/PS2 port | Very hard — antivirus cannot detect hardware |
+| Acoustic Keylogger | Records sound of keystrokes — different keys have different acoustic signatures | Extremely hard — requires specialised signal processing |
+| Electromagnetic Keylogger | Captures EM emissions from keyboard cables | Very hard — requires specialised equipment |
+
+## LM-5: Firewall Types ★★★
+
+| Firewall Type | How It Filters | What It Can Detect | Limitation |
+|---|---|---|---|
+| Packet Filter | Checks source/destination IP, port, protocol in packet headers | Port scans, IP spoofing (partially) | Cannot inspect packet content; blind to application-layer attacks |
+| Stateful Inspection | Tracks the state of active connections | Invalid connection states, some DoS attacks | Still limited to network layer; cannot read encrypted content |
+| Application Layer (Proxy) | Deep packet inspection — reads application data | SQL injection, XSS, malformed HTTP | Slower; decrypts and re-encrypts SSL traffic |
+| Next-Generation Firewall | Combines all above + IDS/IPS + SSL inspection + app awareness | Most threats including zero-days (with threat intelligence) | Expensive; complex to configure |
+
+## LM-6: Social Engineering Techniques ★★★★
+
+**Social Engineering:** Manipulating humans (rather than exploiting technical vulnerabilities) to reveal confidential information or perform actions that compromise security. The "human firewall" is always the weakest link.
+
+| Technique | How It Works | Real Example |
+|---|---|---|
+| **Pretexting** | Attacker creates a fabricated scenario to extract information. Impersonates someone with authority. | "I'm from IT. I need your password to upgrade your account before the system migration tonight." |
+| **Baiting** | Leaving malware-infected USB drives in a car park. Victim finds it, plugs it in out of curiosity. | USB drives with "Salary Appraisals Q3" label left in company car park |
+| **Quid Pro Quo** | Offering a service in exchange for information. | Attacker calls employees offering free tech support — asks for login credentials to "fix" the issue |
+| **Tailgating/Piggybacking** | Physically following an authorized person into a secure area by pretending to belong. | Walking behind an employee through a badge-locked door while hands appear full |
+| **Watering Hole** | Attacker compromises a website frequently visited by the target group — waiting for victims to come to them. | Hacking an industry-specific forum frequented by a company's developers |
+
+## LM-7: Ransomware — Detailed ★★★★★ (PYQ 2025)
+
+**Ransomware:** Malware that encrypts the victim's files and demands payment (cryptocurrency — Bitcoin, Monero) for the decryption key. The victim cannot access their own files until they pay.
+
+How ransomware works:
+1. **Delivery** — via phishing email, malicious attachment, exploit kit, or RDP brute force
+2. **Execution** — victim opens the file/link; ransomware launches silently
+3. **Propagation** — some variants spread laterally through the network (WannaCry used EternalBlue exploit)
+4. **Encryption** — AES/RSA hybrid: AES encrypts files; RSA encrypts the AES key (only attacker has RSA private key)
+5. **Extortion** — ransom note appears: pay in Bitcoin to get the decryption key
+6. **Key destruction** — if timer expires without payment, the decryption key is destroyed
+
+**Famous Ransomware:**
+- **WannaCry (2017)** — North Korea-linked; exploited Windows SMB vulnerability (EternalBlue); hit NHS, Telefonica; $4B estimated damage
+- **NotPetya (2017)** — disguised as ransomware but actually a wiper (no real decryption); $10B damage globally
+- **REvil/Sodinokibi** — ransomware-as-a-service (RaaS); targeted Kaseya (2021)
+
+**Prevention:** Regular offline backups, patch management, email filtering, endpoint detection, user training, network segmentation.
+
+## LM-8: GDPR vs Indian IT Act — Key Comparison ★★★
+
+| Parameter | GDPR (EU) | IT Act 2000 + 43A (India) |
+|---|---|---|
+| Jurisdiction | European Union + any org processing EU citizens' data | India (with extra-territorial provision under Sec 75) |
+| Data Protection Law | GDPR (2018) — comprehensive, citizen-first | IT Act 43A + Information Technology (Reasonable Security Practices) Rules 2011 |
+| Consent | Explicit, informed, withdrawable consent required | Not as strictly defined — "reasonable security practices" standard |
+| Breach notification | 72 hours to supervisory authority | CERT-In: 6 hours for covered entities (2022 rules) |
+| Right to erasure | Yes — "Right to be Forgotten" | Limited — no explicit right to erasure in IT Act |
+| Penalties | Up to €20 million or 4% of global annual turnover | No cap under Sec 43A — unlimited compensation |
+| India's upcoming law | — | Digital Personal Data Protection Act, 2023 (DPDPA) — India's GDPR equivalent |
+
+## LM-9: Quick Definition Flashcards
+
+> **Zero-Day Attack:** An attack exploiting a vulnerability that is unknown to the software vendor and for which no patch exists yet. Called "zero-day" because the vendor has had zero days to fix it.
+
+> **APT (Advanced Persistent Threat):** A prolonged, stealthy cyberattack where the attacker gains access and remains undetected for a long period — typically nation-state sponsored. Goal is espionage or sabotage, not quick financial gain.
+
+> **Botnet:** Network of internet-connected devices infected with malware and controlled remotely by an attacker (the "bot herder") via a C&C server — without the owners' knowledge.
+
+> **Honeypot:** A decoy system deliberately left vulnerable to attract attackers. Used to study attack methods, waste attacker's time, and gather intelligence. It has no legitimate production value — any access is by definition an attack.
+
+> **DMZ (Demilitarised Zone):** A network segment placed between the public internet and the internal private network. Public-facing servers (web, email, DNS) are placed here — separated from internal systems by two firewalls.
+
+> **OSINT (Open Source Intelligence):** Collecting information from publicly available sources — social media, news, company websites, public records — used in the Reconnaissance phase of attacks.
+
+> **Watering Hole Attack:** Attacker compromises a website the target group is known to visit — then waits for victims to come to them and get infected.
+
+> **Typosquatting:** Registering domain names with common typos of popular sites (e.g., googel.com) to capture traffic or phish users who mistype.
+
+## LM-10: Important Case Laws ★★★
+
+| Case | Court / Year | Significance |
+|---|---|---|
+| Shreya Singhal v. Union of India | Supreme Court, 2015 | Struck down Section 66A of IT Act as unconstitutional — violated Article 19(1)(a) freedom of speech |
+| Yahoo! Inc. v. Akash Arora & Anr. | Delhi HC, 1999 | India's first cybersquatting case — court restrained use of "yahooindia.com" as confusingly similar |
+| Arjun Panditrao Khotkar v. Kailash Kushanrao Gorantyal | Supreme Court, 2020 | Section 65B certificate is MANDATORY for electronic evidence to be admissible in court |
+| State of Tamil Nadu v. Suhas Katti | 2004 | First conviction under IT Act 2000 in India — conviction under Sec 67 for posting obscene messages about a woman |
+| Nasscom v. Ajay Sood & Others | Delhi HC, 2005 | Phishing declared illegal under ITA-2000 and IPC even before explicit anti-phishing law existed |
+
+_Good luck — you've got this! 🎯_
