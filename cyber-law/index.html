@@ -13,6 +13,7 @@
     <script src="../theme.js"></script>
 </head>
 
+
 <body>
 
     <header class="page-header">
@@ -34,6 +35,9 @@
                     <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i>
                     <span class="theme-toggle-label">Dark Mode</span>
                 </button>
+                <a href="./notes.html" class="reset-btn" style="text-decoration: none;" aria-label="View study notes">
+                    <i class="ti ti-book" aria-hidden="true"></i> Study Notes
+                </a>
                 <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
                     <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
                 </button>
@@ -73,6 +77,19 @@
 
         <!-- Checklist panel -->
         <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <!-- Study Notes card -->
+            <a href="./notes.html" class="notes-card" aria-label="Open study notes for Cyber Law">
+                <div class="notes-card-icon">
+                    <i class="ti ti-notebook" aria-hidden="true"></i>
+                </div>
+                <div class="notes-card-body">
+                    <div class="notes-card-title">Study Notes</div>
+                    <div class="notes-card-sub">Complete notes for all 4 units — definitions, comparison tables, IT Act sections</div>
+                </div>
+                <div class="notes-card-action">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i> Open Notes
+                </div>
+            </a>
             <div class="legend" aria-label="Legend">
                 <span class="legend-label">Priority:</span>
                 <span class="grp-badge grp1">must do</span>
@@ -304,6 +321,7 @@
             {
                 id: 'cybercrime-basics',
                 title: 'What is Cybercrime?',
+                notesId: '1-1-what-is-cybercrime',
                 group: 1, tag: 'strong',
                 items: [
                     'Definition of cybercrime',
@@ -320,6 +338,7 @@
             {
                 id: 'attack-categories',
                 title: 'Categories of Cybercrime & Attacks',
+                notesId: '1-4-categories-of-cybercrime-how-criminals-plan-attacks',
                 group: 1, tag: 'strong',
                 items: [
                     'Active attack — definition + examples (modification, replay, DoS)',
@@ -336,6 +355,7 @@
             {
                 id: 'phishing-identity',
                 title: 'Phishing & Identity Theft',
+                notesId: '4a-1-phishing',
                 group: 1, tag: 'strong',
                 items: [
                     'Phishing — definition and goal',
@@ -352,6 +372,7 @@
             {
                 id: 'attack-tools',
                 title: 'Tools & Methods Used in Cybercrime',
+                notesId: '3-1-proxy-servers-in-cybercrime',
                 group: 2, tag: 'revise',
                 items: [
                     'Proxy servers — role in hiding attacker identity',
@@ -369,6 +390,7 @@
             {
                 id: 'malware',
                 title: 'Malware — Viruses, Worms & Variants',
+                notesId: '3-6-malware-viruses-worms-variants',
                 group: 2, tag: 'revise',
                 items: [
                     'Computer virus — definition and how it spreads (needs host file)',
@@ -384,6 +406,7 @@
             {
                 id: 'mobile-security',
                 title: 'Cybercrime on Mobile & Wireless Devices',
+                notesId: '2-1-security-challenges-of-mobile-devices',
                 group: 2, tag: 'new',
                 items: [
                     'Security challenges posted by mobile devices (list 4–5)',
@@ -401,6 +424,7 @@
             {
                 id: 'it-act',
                 title: 'IT Act 2000 & Legal Framework',
+                notesId: '4b-1-indian-it-act-2000-overview',
                 group: 1, tag: 'strong',
                 items: [
                     'ITA-2000 — objectives, scope, what it governs',
@@ -419,6 +443,7 @@
             {
                 id: 'digital-sig-pki',
                 title: 'Digital Signature & Public Key Infrastructure',
+                notesId: '4c-1-digital-signature',
                 group: 1, tag: 'strong',
                 items: [
                     'Digital signature — definition and purpose',
@@ -436,6 +461,7 @@
             {
                 id: 'cyber-ethics',
                 title: 'Cyber Ethics, Cyberspace & Related Concepts',
+                notesId: '4d-1-cyber-ethics',
                 group: 2, tag: 'new',
                 items: [
                     'Cyber ethics — definition',
@@ -451,6 +477,7 @@
             {
                 id: 'supporting-topics',
                 title: 'Supporting Topics (Group A & B level)',
+                notesId: 'master-acronym-reference-cyber-law-ethics',
                 group: 3, tag: 'revise',
                 items: [
                     'Electronic evidence — nature and admissibility (Section 65B IT Act)',

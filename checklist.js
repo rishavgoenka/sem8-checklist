@@ -84,12 +84,18 @@
                 badgeHtml += `<span class="grp-badge grp${grp}" aria-label="${grpText}">${grpText}</span>`;
             }
 
+            // Optional notes link (if section has a notesId property)
+            const notesHtml = sec.notesId
+                ? `<a href="./notes.html#${sec.notesId}" class="sec-notes-link" title="Open notes for this section" onclick="event.stopPropagation()" aria-label="Open notes for ${sec.title}"><i class="ti ti-book-2" aria-hidden="true"></i> Notes</a>`
+                : '';
+
             el.innerHTML = `
                 <button class="section-header" onclick="checklist.toggleSection('${sec.id}')" aria-expanded="false" aria-controls="items-${sec.id}">
                     <div class="sec-left">
                         <span class="sec-title">${sec.title}</span>
                         ${badgeHtml}
                         <span class="priority-tag ${tagClass[sec.tag]}" aria-label="${tagLabel[sec.tag]}">${tagLabel[sec.tag]}</span>
+                        ${notesHtml}
                     </div>
                     <div class="sec-right">
                         <span class="sec-progress" id="prog-${sec.id}">${done}/${total}</span>

@@ -950,3 +950,490 @@ body {
     font-size: 10px;
     padding: 1px 7px;
 }
+
+/* ── Notes Card (above checklist) ── */
+.notes-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    cursor: pointer;
+}
+
+.notes-card:hover {
+    border-color: var(--teal-400);
+    box-shadow: 0 2px 12px rgba(29, 158, 117, 0.12);
+    transform: translateY(-1px);
+}
+
+.notes-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--teal-50);
+    color: var(--teal-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.notes-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.notes-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.notes-card-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.notes-card-action {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal-600);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.dark .notes-card-icon {
+    background: var(--teal-100);
+    color: var(--teal-800);
+}
+
+.dark .notes-card-action {
+    color: var(--teal-800);
+}
+
+/* ── Section Notes Link ── */
+.sec-notes-link {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal-600);
+    text-decoration: none;
+    margin-left: 6px;
+    opacity: 0.75;
+    transition: opacity 0.12s;
+    white-space: nowrap;
+}
+
+.sec-notes-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.dark .sec-notes-link {
+    color: var(--teal-800);
+}
+
+/* ═══════════════════════════════════════════════════
+   NOTES DOCUMENT PAGE  (.notes-page body class)
+   Reusable for any subject — swap content.js only
+═══════════════════════════════════════════════════ */
+
+.notes-page {
+    display: block;
+    background: var(--bg-tertiary);
+}
+
+/* ── Notes Page Header (inherits .page-header) ── */
+.notes-page .page-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* ── Unit Jump Nav ── */
+.notes-unit-nav {
+    background: var(--bg-primary);
+    border-bottom: 0.5px solid var(--border-light);
+    position: sticky;
+    top: 60px; /* below the page-header */
+    z-index: 90;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.notes-unit-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.notes-unit-nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    height: 44px;
+}
+
+.notes-unit-nav-item {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 5px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.12s, color 0.12s;
+    border: none;
+    background: transparent;
+    font-family: var(--font);
+}
+
+.notes-unit-nav-item:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.notes-unit-nav-item.active {
+    background: var(--teal-50);
+    color: var(--teal-600);
+    font-weight: 600;
+}
+
+.dark .notes-unit-nav-item.active {
+    background: var(--teal-100);
+    color: var(--teal-800);
+}
+
+/* ── Notes Main Content Area ── */
+.notes-main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 6rem;
+}
+
+/* ── Unit Section Block ── */
+.notes-unit {
+    margin-bottom: 4rem;
+    scroll-margin-top: 120px;
+}
+
+.notes-unit-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1.5px solid var(--border-light);
+}
+
+.notes-unit-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--teal-50);
+    color: var(--teal-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.dark .notes-unit-icon {
+    background: var(--teal-100);
+    color: var(--teal-800);
+}
+
+.notes-unit-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.notes-unit-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.notes-unit-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ── Notes Doc Typography ── */
+.notes-doc {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--text-primary);
+}
+
+.notes-doc h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-light);
+    line-height: 1.3;
+    scroll-margin-top: 120px;
+}
+
+.notes-doc h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--teal-600);
+    margin: 1.5rem 0 0.5rem;
+    line-height: 1.3;
+}
+
+.dark .notes-doc h3 {
+    color: var(--teal-800);
+}
+
+.notes-doc h4 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 1.25rem 0 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.notes-doc p {
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.notes-doc strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.notes-doc em {
+    font-style: normal;
+    display: block;
+    background: var(--amber-50);
+    border-left: 3px solid #d97706;
+    border-radius: 0 6px 6px 0;
+    padding: 8px 14px;
+    margin: 0.75rem 0;
+    font-size: 13px;
+    color: var(--amber-800);
+    line-height: 1.5;
+}
+
+.dark .notes-doc em {
+    background: var(--amber-50);
+    color: var(--amber-800);
+    border-color: #d97706;
+}
+
+.notes-doc ul,
+.notes-doc ol {
+    margin: 0.5rem 0 0.75rem 1.25rem;
+    padding: 0;
+}
+
+.notes-doc li {
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.notes-doc li strong {
+    color: var(--teal-600);
+}
+
+.dark .notes-doc li strong {
+    color: var(--teal-800);
+}
+
+/* Definition blocks — paragraphs where first child is <strong> */
+.notes-doc p:has(> strong:first-child) {
+    background: var(--teal-50);
+    border-left: 3px solid var(--teal-400);
+    border-radius: 0 6px 6px 0;
+    padding: 9px 14px;
+    margin: 0.75rem 0;
+    font-size: 14px;
+}
+
+.dark .notes-doc p:has(> strong:first-child) {
+    background: var(--teal-100);
+    border-left-color: var(--teal-400);
+}
+
+/* ── Notes Tables ── */
+.notes-doc table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 13px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 0.5px solid var(--border-light);
+}
+
+.notes-doc table thead th {
+    background: var(--teal-50);
+    color: var(--teal-600);
+    font-weight: 700;
+    padding: 9px 13px;
+    text-align: left;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border-light);
+    white-space: nowrap;
+}
+
+.dark .notes-doc table thead th {
+    background: var(--teal-100);
+    color: var(--teal-800);
+    border-bottom-color: var(--border-med);
+}
+
+.notes-doc table tbody tr:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+.notes-doc table tbody tr:nth-child(odd) {
+    background: var(--bg-primary);
+}
+
+.notes-doc table tbody tr:hover {
+    background: var(--teal-50);
+}
+
+.dark .notes-doc table tbody tr:hover {
+    background: var(--teal-100);
+}
+
+.notes-doc table tbody td {
+    padding: 8px 13px;
+    border-bottom: 0.5px solid var(--border-light);
+    vertical-align: top;
+    color: var(--text-primary);
+    line-height: 1.55;
+}
+
+/* Remove border from last row */
+.notes-doc table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Notes Code Blocks ── */
+.notes-doc pre,
+.notes-doc code {
+    font-family: 'JetBrains Mono', 'Fira Mono', monospace;
+    font-size: 12.5px;
+    border-radius: 6px;
+}
+
+.notes-doc pre {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    overflow-x: auto;
+    margin: 0.75rem 0;
+    border: 0.5px solid var(--border-light);
+    line-height: 1.6;
+}
+
+.notes-doc code {
+    background: var(--bg-secondary);
+    color: var(--teal-600);
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+/* ── Divider between units ── */
+.notes-unit-divider {
+    height: 1px;
+    background: var(--border-light);
+    margin: 3rem 0;
+}
+
+/* ── Checklist link chip ── */
+.notes-checklist-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--teal-600);
+    background: var(--teal-50);
+    border: 0.5px solid var(--teal-100);
+    border-radius: 20px;
+    padding: 4px 12px;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: background 0.12s, color 0.12s;
+}
+
+.notes-checklist-chip:hover {
+    background: var(--teal-100);
+}
+
+.dark .notes-checklist-chip {
+    color: var(--teal-800);
+    background: var(--teal-100);
+    border-color: transparent;
+}
+
+/* ── Search highlight ── */
+.notes-doc mark {
+    background: #fbbf24;
+    color: #111;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+.dark .notes-doc mark {
+    background: var(--amber-50);
+    color: var(--amber-800);
+}
+
+/* ── Notes Keyboard hint ── */
+.notes-cmd-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    margin-left: auto;
+}
+
+.notes-cmd-hint kbd {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border-med);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
