@@ -37,6 +37,7 @@
     // Render Checklist
     const tagClass = { new: 'p-new', revise: 'p-revise', strong: 'p-strong' };
     const tagLabel = { new: 'new', revise: 'revise', strong: 'strong' };
+    const groupLabel = { 1: 'must do', 2: 'high', 3: 'medium', 4: 'optional' };
 
     function buildChecklist() {
         const container = document.getElementById('sections-container');
@@ -73,11 +74,21 @@
             el.className = 'section';
             el.id = 'sec-' + sec.id;
 
+            let badgeHtml = '';
+            if (sec.day !== undefined && sec.day !== null) {
+                badgeHtml += `<span class="day-badge day${sec.day}" aria-label="Day ${sec.day}">Day ${sec.day}</span>`;
+            }
+            if (sec.group !== undefined && sec.group !== null) {
+                const grp = sec.group || 3;
+                const grpText = groupLabel[grp] || '';
+                badgeHtml += `<span class="grp-badge grp${grp}" aria-label="${grpText}">${grpText}</span>`;
+            }
+
             el.innerHTML = `
                 <button class="section-header" onclick="checklist.toggleSection('${sec.id}')" aria-expanded="false" aria-controls="items-${sec.id}">
                     <div class="sec-left">
                         <span class="sec-title">${sec.title}</span>
-                        <span class="day-badge day${sec.day}" aria-label="Day ${sec.day}">Day ${sec.day}</span>
+                        ${badgeHtml}
                         <span class="priority-tag ${tagClass[sec.tag]}" aria-label="${tagLabel[sec.tag]}">${tagLabel[sec.tag]}</span>
                     </div>
                     <div class="sec-right">
@@ -94,7 +105,7 @@
                         const checked = !!state[key];
                         return `
                             <label class="item-row${checked ? ' done' : ''}" id="row-${key}" role="listitem">
-                                <input type="checkbox" class="item-check" ${checked ? 'checked' : ''} onchange="checklist.toggle('${sec.id}', ${i})" aria-label="${item}" />
+                                <input type="checkbox" class="item-check" ${checked ? 'checked' : ''} onchange="checklist.toggle('${sec.id}', ${i})" aria-label="${item.replace(/"/g, '&quot;')}" />
                                 <span class="item-text">${item}</span>
                             </label>
                         `;

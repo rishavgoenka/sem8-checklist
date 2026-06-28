@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cyber Law Study Planner</title>
+    <title>Cyber Law &amp; Ethics Study Planner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -24,14 +24,15 @@
                 <div class="header-title-wrapper">
                     <div class="header-title">
                         <i class="ti ti-gavel" aria-hidden="true"></i>
-                        Cyber Law Study Planner
+                        Cyber Law &amp; Ethics
                     </div>
-                    <div class="header-sub">Exam on 30 June 2026</div>
+                    <div class="header-sub">Progress saved in your browser — pick up where you left off</div>
                 </div>
             </div>
             <div class="header-actions">
                 <button class="theme-toggle-btn" onclick="themeManager.toggle()" aria-label="Toggle theme">
-                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i> <span class="theme-toggle-label">Dark Mode</span>
+                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i>
+                    <span class="theme-toggle-label">Dark Mode</span>
                 </button>
                 <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
                     <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
@@ -50,12 +51,10 @@
             </div>
             <div class="gp-bar-wrap">
                 <div class="gp-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-                    id="prog-aria">
+                     id="prog-aria">
                     <div class="gp-bar-fill" id="prog-bar"></div>
                 </div>
-                <div class="gp-bar-labels">
-                    <span>0%</span><span>50%</span><span>100%</span>
-                </div>
+                <div class="gp-bar-labels"><span>0%</span><span>50%</span><span>100%</span></div>
             </div>
             <div class="gp-pct" id="prog-pct" aria-live="polite">0%</div>
         </div>
@@ -66,11 +65,233 @@
                 id="tab-checklist" onclick="checklist.switchTab('checklist')">
                 <i class="ti ti-checkbox" aria-hidden="true"></i> Checklist
             </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-sequence" id="tab-sequence"
+                onclick="checklist.switchTab('sequence')">
+                <i class="ti ti-list-numbers" aria-hidden="true"></i> Study Sequence
+            </button>
         </div>
 
         <!-- Checklist panel -->
         <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <div class="legend" aria-label="Legend">
+                <span class="legend-label">Priority:</span>
+                <span class="grp-badge grp1">must do</span>
+                <span class="grp-badge grp2">high</span>
+                <span class="grp-badge grp3">medium</span>
+                <span class="grp-badge grp4">optional</span>
+                <span class="legend-label" style="margin-left:6px">Familiarity:</span>
+                <span class="priority-tag p-new">new</span>
+                <span class="priority-tag p-revise">revise</span>
+                <span class="priority-tag p-strong">strong</span>
+            </div>
             <div id="sections-container"></div>
+        </div>
+
+        <!-- Study Sequence panel -->
+        <div class="panel" id="panel-sequence" role="tabpanel" aria-labelledby="tab-sequence">
+            <div class="seq-grid">
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#b91c1c;">
+                        <span class="grp-badge grp1">must do</span>
+                        Build the foundation first
+                    </div>
+
+                    <div class="seq-group-label">Step 1 — What is Cybercrime?</div>
+                    <div class="seq-step"><span class="seq-num">1.</span>
+                        <div>
+                            <div class="seq-step-text">Define cybercrime — computer as tool vs computer as weapon</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">2.</span>
+                        <div>
+                            <div class="seq-step-text">Classify cybercrime — peer-to-peer, computer as target</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">3.</span>
+                        <div>
+                            <div class="seq-step-text">Forgery, hacking, software piracy, network intrusion —
+                                definitions</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 2 — Attack Categories</div>
+                    <div class="seq-step"><span class="seq-num">4.</span>
+                        <div>
+                            <div class="seq-step-text">Active vs Passive attack — draw the comparison table</div>
+                            <div class="seq-step-note">This appears as Group A fill-in every year</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">5.</span>
+                        <div>
+                            <div class="seq-step-text">How criminals plan attacks — 5 stages (Recon → Cover tracks)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">6.</span>
+                        <div>
+                            <div class="seq-step-text">Cyberstalking + Cyberbullying</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 3 — Phishing & Identity Theft</div>
+                    <div class="seq-step"><span class="seq-num">7.</span>
+                        <div>
+                            <div class="seq-step-text">Phishing types — Spear, Pharming, Vishing, Smishing</div>
+                            <div class="seq-step-note">Phishing vs Pharming distinction is a classic trap question</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">8.</span>
+                        <div>
+                            <div class="seq-step-text">Identity theft — methods + prevention</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">9.</span>
+                        <div>
+                            <div class="seq-step-text">Email spoofing vs email spamming</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#92400e;">
+                        <span class="grp-badge grp2">high</span>
+                        Tools, mobile & law
+                    </div>
+
+                    <div class="seq-group-label">Step 4 — Attack Tools & Methods</div>
+                    <div class="seq-step"><span class="seq-num">10.</span>
+                        <div>
+                            <div class="seq-step-text">Trojans + Backdoors — how they work</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">11.</span>
+                        <div>
+                            <div class="seq-step-text">DoS vs DDoS — botnet diagram (must draw freehand)</div>
+                            <div class="seq-step-note">Full 15-mark question in 2024</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">12.</span>
+                        <div>
+                            <div class="seq-step-text">SQL Injection — how + prevention (parameterized queries)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">13.</span>
+                        <div>
+                            <div class="seq-step-text">Virus vs Worms — types and differences</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 5 — Mobile & Wireless Security</div>
+                    <div class="seq-step"><span class="seq-num">14.</span>
+                        <div>
+                            <div class="seq-step-text">Security challenges of mobile devices</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">15.</span>
+                        <div>
+                            <div class="seq-step-text">Bluetooth attacks — Bluesnarfing, Bluebugging, Bluejacking</div>
+                            <div class="seq-step-note">Full 5-mark Group B in 2024</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">16.</span>
+                        <div>
+                            <div class="seq-step-text">Attacks on mobile phones — diagram</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">17.</span>
+                        <div>
+                            <div class="seq-step-text">Credit card fraud in mobile era + prevention (SET, OTP,
+                                tokenization)</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 6 — IT Act & Legal Framework</div>
+                    <div class="seq-step"><span class="seq-num">18.</span>
+                        <div>
+                            <div class="seq-step-text">ITA-2000 — objectives, scope, key sections (43, 66, 66C, 67, 70)
+                            </div>
+                            <div class="seq-step-note">Prepare a sections → offence → punishment table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">19.</span>
+                        <div>
+                            <div class="seq-step-text">IT Amendment Act 2008 — what changed</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">20.</span>
+                        <div>
+                            <div class="seq-step-text">ISP liability (Section 79), Cyber Appellate Tribunal,
+                                Jurisdiction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#065f46;">
+                        <span class="grp-badge grp3">medium + optional</span>
+                        Finish strong
+                    </div>
+
+                    <div class="seq-group-label">Step 7 — Digital Signature & PKI</div>
+                    <div class="seq-step"><span class="seq-num">21.</span>
+                        <div>
+                            <div class="seq-step-text">How digital signatures work — draw the process flow</div>
+                            <div class="seq-step-note">Full 15-mark question in 2023. Diagram alone = 7–10 marks.</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">22.</span>
+                        <div>
+                            <div class="seq-step-text">Public Key Certificate — CA, CRL, advantages &amp; limitations
+                            </div>
+                            <div class="seq-step-note">Full 15-mark question in 2025</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">23.</span>
+                        <div>
+                            <div class="seq-step-text">PKI structure: CA → RA → End Users</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 8 — Cyber Ethics</div>
+                    <div class="seq-step"><span class="seq-num">24.</span>
+                        <div>
+                            <div class="seq-step-text">Cyber ethics — definition, 4 ethical issues, why practice it
+                            </div>
+                            <div class="seq-step-note">New full 15-mark cluster in 2025 — high repeat chance</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">25.</span>
+                        <div>
+                            <div class="seq-step-text">Cyberspace vs cyber ethics vs cybercrime — distinguish</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">26.</span>
+                        <div>
+                            <div class="seq-step-text">Cyber squatting + Electronic evidence + Cyber terrorism</div>
+                            <div class="seq-step-note">Group B 5-mark level only — don't over-invest</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="seq-tip">
+                <strong>Why this order?</strong>
+                Start with <em>what cybercrime is</em> before jumping to laws — understanding the crime makes the Act
+                make sense.
+                Phishing &amp; Identity Theft come before the IT Act because they are the most concrete examples the law
+                addresses.
+                Attack tools (DoS, SQL) are studied after you know the crime types, so each technique has context.
+                Mobile security is a full Unit 2 with 15-mark potential — don't skip.
+                The IT Act is studied <em>after</em> the crimes so sections feel logical, not arbitrary.
+                Digital Signatures come last among Must Do topics — they need the cryptography mindset.
+                Cyber Ethics wraps it all up as the newest high-risk topic for 2026.
+                <br><br>
+                <strong>Diagrams to practice freehand:</strong>
+                Digital Signature Process Flow · DoS vs DDoS botnet · Active vs Passive attack table · PKI structure ·
+                Mobile attack diagram
+            </div>
         </div>
 
     </main>
@@ -78,9 +299,174 @@
     <script>
         window.subjectId = 'cyber-law';
         window.examDate = '30 June 2026';
-        window.checklistData = [];
+        window.checklistData = [
+            /* ── 1. WHAT IS CYBERCRIME ── */
+            {
+                id: 'cybercrime-basics',
+                title: 'What is Cybercrime?',
+                group: 1, tag: 'strong',
+                items: [
+                    'Definition of cybercrime',
+                    'Computer as a tool vs computer as a weapon (target)',
+                    'Example: peer-to-peer cybercrime',
+                    'Example: computer as weapon cybercrime',
+                    'Forgery, hacking, software piracy — brief definitions',
+                    'Computer network intrusion — what it means',
+                    'Key elements of cyber security (CIA triad: Confidentiality, Integrity, Availability)',
+                    'What is cyberspace?'
+                ]
+            },
+            /* ── 2. ATTACK CATEGORIES ── */
+            {
+                id: 'attack-categories',
+                title: 'Categories of Cybercrime & Attacks',
+                group: 1, tag: 'strong',
+                items: [
+                    'Active attack — definition + examples (modification, replay, DoS)',
+                    'Passive attack — definition + examples (eavesdropping, traffic analysis)',
+                    'Active vs Passive attack — comparison table (draw this)',
+                    'How criminals plan attacks — 5 stages (Recon, Scanning, Access, Maintain, Cover tracks)',
+                    'Cyberstalking — definition and how it works',
+                    'Cyberbullying — definition and example',
+                    'MITM (Man-in-the-Middle) attack — how it works',
+                    'Hybrid attacks — definition'
+                ]
+            },
+            /* ── 3. PHISHING & IDENTITY THEFT ── */
+            {
+                id: 'phishing-identity',
+                title: 'Phishing & Identity Theft',
+                group: 1, tag: 'strong',
+                items: [
+                    'Phishing — definition and goal',
+                    'Spear phishing, Vishing (voice), Smishing (SMS)',
+                    'Pharming — DNS-level redirect (different from phishing)',
+                    'Phishing vs Pharming — key distinction for exam',
+                    'Identity theft — methods used by attackers',
+                    'How to prevent identity theft (strong passwords, 2FA, monitoring)',
+                    'Email spoofing — definition and technique',
+                    'Email spoofing vs email spamming — difference'
+                ]
+            },
+            /* ── 4. ATTACK TOOLS & METHODS ── */
+            {
+                id: 'attack-tools',
+                title: 'Tools & Methods Used in Cybercrime',
+                group: 2, tag: 'revise',
+                items: [
+                    'Proxy servers — role in hiding attacker identity',
+                    'Trojan Horse — definition, how it is installed, example',
+                    'Backdoors — definition and how attackers maintain access',
+                    'DoS (Denial of Service) — mechanism, single source',
+                    'DDoS (Distributed DoS) — botnet, multiple sources, diagram',
+                    'DoS vs DDoS — key differences',
+                    'SQL Injection — malicious query in input field, how it works',
+                    'SQL Injection prevention — parameterized queries, WAF, input validation',
+                    'Buffer overflow — definition only (no implementation needed)'
+                ]
+            },
+            /* ── 5. MALWARE & VIRUSES ── */
+            {
+                id: 'malware',
+                title: 'Malware — Viruses, Worms & Variants',
+                group: 2, tag: 'revise',
+                items: [
+                    'Computer virus — definition and how it spreads (needs host file)',
+                    'Worm — self-replicating, spreads without host file',
+                    'Virus vs Worm — comparison table',
+                    'Virus types: boot sector, file infector, macro, polymorphic',
+                    'Trojan vs Virus vs Worm — one-line difference each',
+                    'Salami attack — definition and example',
+                    'Brute force attack — definition + prevention'
+                ]
+            },
+            /* ── 6. MOBILE & WIRELESS SECURITY ── */
+            {
+                id: 'mobile-security',
+                title: 'Cybercrime on Mobile & Wireless Devices',
+                group: 2, tag: 'new',
+                items: [
+                    'Security challenges posted by mobile devices (list 4–5)',
+                    'Cryptographic security for mobile — WPA2/WPA3, TLS',
+                    'Bluetooth — Bluejacking, Bluesnarfing, Bluebugging (definitions + differences)',
+                    'Attacks on mobile/cellphones — types + diagram',
+                    'Mobile virus and mobile hacking techniques',
+                    'Securing a lost/stolen phone — remote wipe, PIN, MDM, encryption',
+                    'Credit card fraud in mobile & wireless era',
+                    'Prevention of mobile credit card fraud — SET, OTP, tokenization, SSL',
+                    'Different viruses on laptops'
+                ]
+            },
+            /* ── 7. IT ACT & LEGAL FRAMEWORK ── */
+            {
+                id: 'it-act',
+                title: 'IT Act 2000 & Legal Framework',
+                group: 1, tag: 'strong',
+                items: [
+                    'ITA-2000 — objectives, scope, what it governs',
+                    'Section 43 — damage to computer system / data',
+                    'Section 66 — hacking (computer-related offences)',
+                    'Section 66C — identity theft punishment',
+                    'Section 67 — obscene material in electronic form',
+                    'Section 70 — protected systems, punishment up to 10 years',
+                    'Section 79 — ISP / intermediary liability exemption',
+                    'IT Amendment Act 2008 — key additions (cyberterrorism, data protection)',
+                    'Cyber Appellate Tribunal — powers and functions',
+                    'Indian vs International jurisdiction in cyberspace'
+                ]
+            },
+            /* ── 8. DIGITAL SIGNATURE & PKI ── */
+            {
+                id: 'digital-sig-pki',
+                title: 'Digital Signature & Public Key Infrastructure',
+                group: 1, tag: 'strong',
+                items: [
+                    'Digital signature — definition and purpose',
+                    'How digital signatures work — process flow (Hash → Encrypt with private key → Verify with public key)',
+                    'Non-repudiation — what it means and why it matters',
+                    'Public Key Certificate — definition, what it contains',
+                    'Certificate Authority (CA) — who issues certificates',
+                    'Certificate Revocation List (CRL) — what and why',
+                    'PKI structure — CA → RA → End Users (draw this)',
+                    'Advantages of public key certificate',
+                    'Limitations of public key certificate'
+                ]
+            },
+            /* ── 9. CYBER ETHICS ── */
+            {
+                id: 'cyber-ethics',
+                title: 'Cyber Ethics, Cyberspace & Related Concepts',
+                group: 2, tag: 'new',
+                items: [
+                    'Cyber ethics — definition',
+                    '4 ethical issues: Privacy, Accuracy, Property, Access (PAPA framework)',
+                    'Why it is necessary to practice cyber ethics',
+                    'Cyberspace vs cyber ethics vs cybercrime — distinguish all three',
+                    'Cybersecurity as integral to personal daily life',
+                    'Cyber squatting — definition + consumer protection (UDRP)',
+                    'Steganography — hiding information inside a picture (Section 66 context)'
+                ]
+            },
+            /* ── 10. MEDIUM / LOWER PRIORITY ── */
+            {
+                id: 'supporting-topics',
+                title: 'Supporting Topics (Group A & B level)',
+                group: 3, tag: 'revise',
+                items: [
+                    'Electronic evidence — nature and admissibility (Section 65B IT Act)',
+                    'Cyber terrorism — definition + illustration',
+                    'Internet Protocol service — role in cybercrime investigation',
+                    'Cyber law — advantages and disadvantages',
+                    'HIDS vs NIDS — comparison (Host vs Network Intrusion Detection)',
+                    'White hat / Grey hat / Black hat hackers — one-liner each',
+                    'What is a cookie? (one-liner)',
+                    'What is SSL? (one-liner for Cyber Law context)'
+                ]
+            }
+        ];
     </script>
     <script src="../checklist.js"></script>
+
 </body>
 
 </html>
