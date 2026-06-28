@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Software Engineering Study Planner — OEC-AIML 801C</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../theme.js"></script>
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+
+
+<body>
+
+    <header class="page-header">
+        <div class="header-inner">
+            <div class="header-title-container">
+                <a href="../" class="back-btn" aria-label="Go back to home">
+                    <i class="ti ti-arrow-left" aria-hidden="true"></i>
+                </a>
+                <div class="header-title-wrapper">
+                    <div class="header-title">
+                        <i class="ti ti-cpu" aria-hidden="true"></i>
+                        Software Engineering
+                    </div>
+                    <div class="header-sub">OEC-AIML 801C · Progress saved in your browser — pick up where you left off</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="themeManager.toggle()" aria-label="Toggle theme">
+                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i>
+                    <span class="theme-toggle-label">Dark Mode</span>
+                </button>
+                <a href="./notes.html" class="reset-btn" style="text-decoration: none;" aria-label="View study notes">
+                    <i class="ti ti-book" aria-hidden="true"></i> Study Notes
+                </a>
+                <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
+                    <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" role="main">
+
+        <!-- Global progress -->
+        <div class="global-progress" aria-label="Overall progress">
+            <div>
+                <div class="gp-stat-label">completed</div>
+                <div class="gp-stat-num"><span id="done-count">0</span> / <span id="total-count">0</span></div>
+            </div>
+            <div class="gp-bar-wrap">
+                <div class="gp-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                     id="prog-aria">
+                    <div class="gp-bar-fill" id="prog-bar"></div>
+                </div>
+                <div class="gp-bar-labels"><span>0%</span><span>50%</span><span>100%</span></div>
+            </div>
+            <div class="gp-pct" id="prog-pct" aria-live="polite">0%</div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-checklist"
+                id="tab-checklist" onclick="checklist.switchTab('checklist')">
+                <i class="ti ti-checkbox" aria-hidden="true"></i> Checklist
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-sequence" id="tab-sequence"
+                onclick="checklist.switchTab('sequence')">
+                <i class="ti ti-list-numbers" aria-hidden="true"></i> Study Sequence
+            </button>
+        </div>
+
+        <!-- Checklist panel -->
+        <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <!-- Study Notes card -->
+            <a href="./notes.html" class="notes-card" aria-label="Open study notes for Software Engineering">
+                <div class="notes-card-icon">
+                    <i class="ti ti-notebook" aria-hidden="true"></i>
+                </div>
+                <div class="notes-card-body">
+                    <div class="notes-card-title">Study Notes</div>
+                    <div class="notes-card-sub">All 5 units — model answers, diagrams, COCOMO numericals &amp; 38 difference-between tables</div>
+                </div>
+                <div class="notes-card-action">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i> Open Notes
+                </div>
+            </a>
+            <!-- Solved Papers card -->
+            <a href="./pyq.html" class="notes-card" aria-label="Open solved previous-year papers" style="margin-top:10px;">
+                <div class="notes-card-icon">
+                    <i class="ti ti-file-stack" aria-hidden="true"></i>
+                </div>
+                <div class="notes-card-body">
+                    <div class="notes-card-title">Solved Papers &amp; Predictions</div>
+                    <div class="notes-card-sub">4 MAKAUT papers fully solved with worked PERT / COCOMO / Function-Point numericals + 16 predicted questions</div>
+                </div>
+                <div class="notes-card-action">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i> Open Papers
+                </div>
+            </a>
+            <div class="legend" aria-label="Legend">
+                <span class="legend-label">Priority:</span>
+                <span class="grp-badge grp1">must do</span>
+                <span class="grp-badge grp2">high</span>
+                <span class="grp-badge grp3">medium</span>
+                <span class="grp-badge grp4">optional</span>
+                <span class="legend-label" style="margin-left:6px">Familiarity:</span>
+                <span class="priority-tag p-new">new</span>
+                <span class="priority-tag p-revise">revise</span>
+                <span class="priority-tag p-strong">strong</span>
+            </div>
+            <div id="sections-container"></div>
+        </div>
+
+        <!-- Study Sequence panel -->
+        <div class="panel" id="panel-sequence" role="tabpanel" aria-labelledby="tab-sequence">
+            <div class="seq-grid">
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#b91c1c;">
+                        <span class="grp-badge grp1">must do</span>
+                        Lock the guaranteed marks
+                    </div>
+
+                    <div class="seq-group-label">Step 1 — The 4 numericals (fast, certain marks)</div>
+                    <div class="seq-step"><span class="seq-num">1.</span>
+                        <div>
+                            <div class="seq-step-text">COCOMO — E = a(KLOC)^b, D = c(E)^d; memorise the organic worked example</div>
+                            <div class="seq-step-note">Plus schedule-compression: cost ∝ 1/T⁴ (15→12 months ⇒ ×2.44)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">2.</span>
+                        <div>
+                            <div class="seq-step-text">Function Point — UFP = Σ(count×weight); FP = UFP×(0.65+0.01×ΣFi)</div>
+                            <div class="seq-step-note">Worked twice across the papers — practise the weight table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">3.</span>
+                        <div>
+                            <div class="seq-step-text">PERT — te=(O+4M+P)/6, σ²=((P−O)/6)²; critical path = longest path</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">4.</span>
+                        <div>
+                            <div class="seq-step-text">Cyclomatic complexity — V(G)=E−N+2 = P+1 = regions+1; draw the CFG</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 2 — Coupling &amp; Cohesion (every year)</div>
+                    <div class="seq-step"><span class="seq-num">5.</span>
+                        <div>
+                            <div class="seq-step-text">All 6 coupling types (content→data) and 7 cohesion types (coincidental→functional)</div>
+                            <div class="seq-step-note">Appears as a 13–15 mark Group C question repeatedly</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">6.</span>
+                        <div>
+                            <div class="seq-step-text">Why "low coupling, high cohesion" = good design</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#92400e;">
+                        <span class="grp-badge grp2">high</span>
+                        High-frequency descriptive topics
+                    </div>
+
+                    <div class="seq-group-label">Step 3 — Process models &amp; testing</div>
+                    <div class="seq-step"><span class="seq-num">7.</span>
+                        <div>
+                            <div class="seq-step-text">Waterfall vs Spiral; why Spiral is risk-driven (draw the 4 quadrants)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">8.</span>
+                        <div>
+                            <div class="seq-step-text">Verification vs Validation — the classic 5-mark table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">9.</span>
+                        <div>
+                            <div class="seq-step-text">Levels of testing + V-model; black-box vs white-box; alpha/beta/regression</div>
+                            <div class="seq-step-note">Full Group C question in multiple papers</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 4 — DFD &amp; structured design</div>
+                    <div class="seq-step"><span class="seq-num">10.</span>
+                        <div>
+                            <div class="seq-step-text">DFD symbols + essential rules; context vs lower-level; logical vs physical</div>
+                            <div class="seq-step-note">Draw a Level-0 DFD freehand — appears nearly every year</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">11.</span>
+                        <div>
+                            <div class="seq-step-text">Data dictionary (notation + example); structure chart from a DFD</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">12.</span>
+                        <div>
+                            <div class="seq-step-text">Decision tree / decision table / structured English</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 5 — Agile &amp; management (new + recurring)</div>
+                    <div class="seq-step"><span class="seq-num">13.</span>
+                        <div>
+                            <div class="seq-step-text">Agile vs Waterfall; Scrum (roles, artifacts, ceremonies)</div>
+                            <div class="seq-step-note">New in 2024-25 papers — high repeat chance</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">14.</span>
+                        <div>
+                            <div class="seq-step-text">SCM — necessity + activities; project monitoring; CMM/CMMI levels</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#065f46;">
+                        <span class="grp-badge grp3">medium + optional</span>
+                        Finish strong
+                    </div>
+
+                    <div class="seq-group-label">Step 6 — UML diagrams (practise drawing)</div>
+                    <div class="seq-step"><span class="seq-num">15.</span>
+                        <div>
+                            <div class="seq-step-text">Class diagram — 3 compartments + association/aggregation/composition/inheritance</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">16.</span>
+                        <div>
+                            <div class="seq-step-text">Use case diagram — actors, ellipses, «include»/«extend»</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">17.</span>
+                        <div>
+                            <div class="seq-step-text">Sequence vs collaboration; state chart vs activity diagram</div>
+                            <div class="seq-step-note">Know message types for sequence diagrams (sync/async/return/create/destroy)</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 7 — Concept clinchers</div>
+                    <div class="seq-step"><span class="seq-num">18.</span>
+                        <div>
+                            <div class="seq-step-text">"Software doesn't wear out" + IEEE definition + software vs hardware table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">19.</span>
+                        <div>
+                            <div class="seq-step-text">Feasibility study types; cost-benefit analysis</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">20.</span>
+                        <div>
+                            <div class="seq-step-text">Skim the 38 difference-between tables — any can be a 5-mark Group B</div>
+                            <div class="seq-step-note">Answer every "differentiate" question as a table + one-line summary</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="seq-tip">
+                <strong>Why this order?</strong>
+                Start with the <em>four numericals</em> — they are the most reliable, fastest marks in the paper and appear every single year.
+                Then lock <em>Coupling &amp; Cohesion</em>, the single most repeated descriptive topic.
+                Process models and testing come next because they anchor Units 1 and 3 and feed many Group B/C questions.
+                DFD and structured design (Unit 2) are guaranteed — practise drawing a Level-0 DFD and a structure chart freehand.
+                Agile/Scrum is newer (2024-25) but rising fast, so don't skip it.
+                Finish with UML drawing practice and the concept clinchers.
+                <br><br>
+                <strong>Diagrams to practise freehand:</strong>
+                Spiral (4 quadrants) · V-model · Level-0 DFD · Gantt chart · Class diagram · Use case · Sequence · State chart · Activity · Structure chart · Control Flow Graph
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        window.subjectId = 'software-engineering';
+        window.examDate = 'July 2026';
+        window.checklistData = [
+            /* ── UNIT 1 — SYSTEM ANALYSIS, PROCESS MODELS & ESTIMATION ── */
+            {
+                id: 'sa-overview',
+                title: 'System Analysis, SDLC & Business System',
+                notesId: '1-1-overview-of-system-analysis-design-and-the-business-system-concept',
+                group: 1, tag: 'strong',
+                items: [
+                    'Software engineering — IEEE definition',
+                    'System analysis vs system design (problem- vs solution-oriented)',
+                    'Business system concept',
+                    'SDLC — the 6 phases and feedback loops',
+                    'Deliverables of each SDLC phase'
+                ]
+            },
+            {
+                id: 'process-models',
+                title: 'Waterfall & Spiral Models',
+                notesId: '1-3-waterfall-model',
+                group: 1, tag: 'strong',
+                items: [
+                    'Waterfall model — phases, advantages, disadvantages',
+                    'When Waterfall is suitable (stable requirements)',
+                    'Spiral model — the 4 quadrants (draw this)',
+                    'Why Spiral is called risk-driven',
+                    'Waterfall vs Spiral — comparison table',
+                    'Agile vs Waterfall — comparison table',
+                    'Prototyping model — advantages over Waterfall'
+                ]
+            },
+            {
+                id: 'feasibility-cocomo',
+                title: 'Feasibility, Cost-Benefit & COCOMO',
+                notesId: '1-5-feasibility-analysis-technical-economic-operational',
+                group: 1, tag: 'revise',
+                items: [
+                    'Feasibility analysis — Technical, Economic, Operational, Schedule, Legal',
+                    'Cost-benefit analysis (ROI, payback, net benefit)',
+                    'COCOMO — E = a(KLOC)^b, D = c(E)^d',
+                    'COCOMO modes — Organic / Semi-detached / Embedded (constants)',
+                    'COCOMO worked numerical (organic 100 KLOC → effort & time)',
+                    'Schedule-compression cost ∝ 1/T⁴ (Putnam) — worked example',
+                    'Basic vs Intermediate vs Detailed COCOMO',
+                    'Function Point Analysis — 5 components, UFP, CAF (worked numerical)'
+                ]
+            },
+            /* ── UNIT 2 — SYSTEM DESIGN ── */
+            {
+                id: 'dfd',
+                title: 'Context Diagram & DFD',
+                notesId: '2-1-context-diagram-and-data-flow-diagram-dfd',
+                group: 1, tag: 'strong',
+                items: [
+                    'DFD — 4 symbols (entity, process, data store, data flow)',
+                    'Context diagram (Level-0) vs lower-level DFDs',
+                    'Essential DFD rules (balancing, no store-to-store, numbering)',
+                    'Logical vs physical DFD — comparison table',
+                    'Data dictionary — notation (+ [ ] { } |) and example',
+                    'Shortcomings of the DFD model',
+                    'Draw a Level-0 DFD freehand'
+                ]
+            },
+            {
+                id: 'design-principles',
+                title: 'Partitioning, Top-Down/Bottom-Up & Logic Tools',
+                notesId: '2-2-problem-partitioning',
+                group: 2, tag: 'revise',
+                items: [
+                    'Problem partitioning — divide & conquer; importance',
+                    'Top-down vs bottom-up design (stubs vs drivers)',
+                    'Decision tree — branches to actions (draw example)',
+                    'Decision table — condition/action stubs',
+                    'Structured English — sequence/selection/iteration',
+                    'Functional vs object-oriented approach — comparison',
+                    'Structure chart — module hierarchy + data/control couples'
+                ]
+            },
+            /* ── UNIT 3 — CODING, DOCUMENTATION & TESTING ── */
+            {
+                id: 'coding-doc',
+                title: 'Coding, Documentation, Hiding & Reuse',
+                notesId: '3-1-structured-object-oriented-programming',
+                group: 2, tag: 'revise',
+                items: [
+                    'Structured programming — 3 constructs, no goto',
+                    'OOP — 4 pillars (encapsulation, abstraction, inheritance, polymorphism)',
+                    'Information hiding (Parnas) — reduces coupling',
+                    'Information hiding vs encapsulation',
+                    'Software reuse — benefits and challenges',
+                    'System documentation — internal vs external; user vs technical',
+                    'Coding standards vs guidelines'
+                ]
+            },
+            {
+                id: 'testing',
+                title: 'Testing — Levels, Integration, V&V, Metrics',
+                notesId: '3-3-levels-of-testing',
+                group: 1, tag: 'strong',
+                items: [
+                    'Levels of testing + V-model (draw it)',
+                    'Unit / Integration / System / Acceptance testing',
+                    'Integration — big-bang, top-down (stubs), bottom-up (drivers), sandwich',
+                    'Driver vs stub',
+                    'Black-box vs white-box testing',
+                    'Alpha vs beta vs acceptance testing',
+                    'Regression vs re-testing; smoke vs sanity',
+                    'Verification vs Validation (table)',
+                    'Test case specification — contents',
+                    'Reliability assessment (MTBF); software metrics',
+                    'Cyclomatic complexity — V(G)=E−N+2=P+1 (draw CFG, worked)'
+                ]
+            },
+            /* ── UNIT 4 — SOFTWARE PROJECT MANAGEMENT ── */
+            {
+                id: 'project-mgmt',
+                title: 'Project Management — Scheduling, SCM, QA',
+                notesId: '4-1-project-scheduling',
+                group: 2, tag: 'revise',
+                items: [
+                    'Project scheduling — Gantt chart (draw), critical path',
+                    'PERT — te=(O+4M+P)/6, σ²; critical path (worked numerical)',
+                    'PERT vs Gantt',
+                    'Staffing (COCOMO team size)',
+                    'Software Configuration Management — necessity + 4 activities',
+                    'SCM vs Quality Assurance',
+                    'Quality Assurance vs Quality Control',
+                    'Project monitoring — techniques, contribution to success',
+                    'Project scheduling vs project monitoring',
+                    'CMM/CMMI — 5 levels, use, shortcomings'
+                ]
+            },
+            /* ── UNIT 5 — MODELING & UML ── */
+            {
+                id: 'modeling-uml',
+                title: 'Modeling & UML Diagrams',
+                notesId: '5-1-why-modeling-static-vs-dynamic-models',
+                group: 2, tag: 'new',
+                items: [
+                    'Why modeling; static vs dynamic models',
+                    'Class diagram — 3 compartments + relationships (draw)',
+                    'Association / aggregation / composition / inheritance (notation)',
+                    'Aggregation vs composition',
+                    'Use case diagram — actors, use cases, «include»/«extend» (draw)',
+                    'Use case vs class diagram',
+                    'Sequence diagram — lifelines, messages, returns (draw)',
+                    'Message types — sync / async / return / self / create / destroy',
+                    'Sequence vs collaboration diagram',
+                    'State chart diagram — states + event transitions (draw)',
+                    'Activity diagram — actions, decisions, fork/join (draw)',
+                    'State chart vs activity diagram'
+                ]
+            },
+            /* ── CONCEPT CLINCHERS & DIFFERENCE BANK ── */
+            {
+                id: 'concept-clinchers',
+                title: 'Concept Clinchers & 38 Difference Tables',
+                notesId: 'd1-waterfall-model-vs-spiral-model',
+                group: 3, tag: 'revise',
+                items: [
+                    '"Software doesn’t wear out" — justify (deterioration vs wear)',
+                    'Software vs hardware characteristics (table)',
+                    'IEEE definition of software engineering',
+                    'Software crisis — causes and solutions',
+                    'Simple program vs software product',
+                    'Error vs fault/defect vs failure',
+                    'Forward vs reverse engineering; re-engineering legacy systems',
+                    'Functional vs non-functional requirements',
+                    'Reliability vs availability',
+                    'Skim all 38 "difference between" tables (Part 2 of notes)'
+                ]
+            }
+        ];
+    </script>
+    <script src="../checklist.js"></script>
+
+</body>
+
+</html>

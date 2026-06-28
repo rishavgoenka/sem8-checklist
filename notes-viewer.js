@@ -238,7 +238,8 @@
         }
 
         try {
-            const response = await fetch('./notes.md');
+            const mdFile = config.mdFile || './notes.md';
+            const response = await fetch(mdFile);
             if (!response.ok) throw new Error(`Could not load notes.md (${response.status})`);
             const markdown = await response.text();
 
