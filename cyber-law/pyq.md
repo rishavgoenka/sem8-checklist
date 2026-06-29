@@ -27,19 +27,6 @@
 
 ---
 
-## 📋 Syllabus Quick Reference
-
-| Unit | Topics | Key Focus |
-|------|---------|-----------|
-| **1** | Intro to Cybercrime & Categories | Active vs Passive, Cyberstalking, Hacking phases |
-| **2** | Mobile & Wireless Security | Bluetooth attacks, SIM Swap, Phone attacks |
-| **3** | Tools & Methods | Trojans, DoS/DDoS, SQL Injection, Buffer Overflow |
-| **4** | Phishing, ID Theft & Cyber Law | Phishing types, IT Act 2000/2008, PKI, Digital Signatures, Cyber Ethics |
-
----
-
----
-
 # Paper 1 — 2022–2023
 *CS/B.TECH(N)/EVEN/SEM-8/8258/2022-2023/I124*
 

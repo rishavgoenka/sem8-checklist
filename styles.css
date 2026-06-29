@@ -54,40 +54,52 @@ html.dark {
     --border-light: rgba(244, 243, 239, 0.06);
     --border-med: rgba(244, 243, 239, 0.12);
     --border-strong: rgba(244, 243, 239, 0.22);
-    
+
     /* Highly readable, comfortable pill colors for dark mode */
     --purple-50: rgba(165, 153, 252, 0.12);
-    --purple-100: #2b2554; /* Rich dark purple background */
+    --purple-100: #2b2554;
+    /* Rich dark purple background */
     --purple-200: #a599fc;
     --purple-400: #b5acfd;
     --purple-600: #c9c3fe;
-    --purple-800: #dcd8ff; /* Soft pastel purple text */
+    --purple-800: #dcd8ff;
+    /* Soft pastel purple text */
     --purple-900: #f1efff;
-    
+
     --teal-50: rgba(45, 212, 191, 0.12);
-    --teal-100: #0c4236; /* Rich dark teal background */
+    --teal-100: #0c4236;
+    /* Rich dark teal background */
     --teal-400: #2dd4bf;
     --teal-600: #99f6e4;
-    --teal-800: #a7eed8; /* Soft pastel teal text */
-    
+    --teal-800: #a7eed8;
+    /* Soft pastel teal text */
+
     --coral-50: rgba(251, 113, 133, 0.12);
-    --coral-100: #542012; /* Rich dark coral background */
+    --coral-100: #542012;
+    /* Rich dark coral background */
     --coral-400: #fb7185;
     --coral-600: #fecdd3;
-    --coral-800: #fbc9ba; /* Soft pastel coral text */
-    
+    --coral-800: #fbc9ba;
+    /* Soft pastel coral text */
+
     --blue-50: rgba(56, 189, 248, 0.12);
-    --blue-100: #103861; /* Rich dark blue background */
+    --blue-100: #103861;
+    /* Rich dark blue background */
     --blue-600: #38bdf8;
-    --blue-800: #bce0fd; /* Soft pastel blue text */
-    
+    --blue-800: #bce0fd;
+    /* Soft pastel blue text */
+
     --green-50: rgba(52, 211, 153, 0.12);
-    --green-100: #123d1b; /* Rich dark green background */
+    --green-100: #123d1b;
+    /* Rich dark green background */
     --green-600: #34d399;
-    --green-800: #bbf7d0; /* Soft pastel green text */
-    
-    --amber-50: #422c0a; /* Rich dark amber background */
-    --amber-800: #fef08a; /* Soft pastel amber text */
+    --green-800: #bbf7d0;
+    /* Soft pastel green text */
+
+    --amber-50: #422c0a;
+    /* Rich dark amber background */
+    --amber-800: #fef08a;
+    /* Soft pastel amber text */
 }
 
 *,
@@ -255,11 +267,25 @@ body {
 }
 
 /* ── Subject Dashboard Grid ── */
+/* .subject-group {
+    margin-bottom: 2.5rm;
+} */
+
+.group-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
 .subject-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-top: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -1084,7 +1110,8 @@ body {
     background: var(--bg-primary);
     border-bottom: 0.5px solid var(--border-light);
     position: sticky;
-    top: 60px; /* below the page-header */
+    top: 60px;
+    /* below the page-header */
     z-index: 90;
     overflow-x: auto;
     scrollbar-width: none;
@@ -1257,7 +1284,7 @@ body {
 }
 
 /* Whole-line italic (a paragraph that is only an <em>) becomes an exam-tip callout */
-.notes-doc p > em:only-child {
+.notes-doc p>em:only-child {
     font-style: normal;
     display: block;
     background: var(--amber-50);
@@ -1269,7 +1296,7 @@ body {
     line-height: 1.5;
 }
 
-.dark .notes-doc p > em:only-child {
+.dark .notes-doc p>em:only-child {
     background: var(--amber-50);
     color: var(--amber-800);
     border-color: #d97706;
@@ -1474,14 +1501,25 @@ body {
 }
 
 .table-scroll table {
-    margin: 0;               /* remove double margin from .notes-doc table */
-    min-width: 520px;        /* force horizontal scroll before table squishes */
+    margin: 0;
+    /* remove double margin from .notes-doc table */
+    min-width: 520px;
+    /* force horizontal scroll before table squishes */
 }
 
 /* Subtle scrollbar styling for table wrappers */
-.table-scroll::-webkit-scrollbar { height: 4px; }
-.table-scroll::-webkit-scrollbar-track { background: var(--bg-secondary); }
-.table-scroll::-webkit-scrollbar-thumb { background: var(--border-med); border-radius: 2px; }
+.table-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-med);
+    border-radius: 2px;
+}
 
 /* ── NOTES LOADING STATE ──────────────────────────────────────────────────── */
 .notes-loading {
