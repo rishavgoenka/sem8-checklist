@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ecommerce &amp; ERP Study Planner</title>
+    <title>E-Commerce &amp; ERP Study Planner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -32,15 +32,19 @@
                 <div class="header-title-wrapper">
                     <div class="header-title">
                         <i class="ti ti-shopping-cart" aria-hidden="true"></i>
-                        Ecommerce &amp; ERP Study Planner
+                        E-Commerce &amp; ERP
                     </div>
-                    <div class="header-sub">Exam on 2 July 2026</div>
+                    <div class="header-sub">Progress saved in your browser — pick up where you left off</div>
                 </div>
             </div>
             <div class="header-actions">
                 <button class="theme-toggle-btn" onclick="themeManager.toggle()" aria-label="Toggle theme">
-                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i> <span class="theme-toggle-label">Dark Mode</span>
+                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i>
+                    <span class="theme-toggle-label">Dark Mode</span>
                 </button>
+                <a href="./notes.html" class="reset-btn" style="text-decoration: none;" aria-label="View study notes">
+                    <i class="ti ti-book" aria-hidden="true"></i> Study Notes
+                </a>
                 <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
                     <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
                 </button>
@@ -58,12 +62,10 @@
             </div>
             <div class="gp-bar-wrap">
                 <div class="gp-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-                    id="prog-aria">
+                     id="prog-aria">
                     <div class="gp-bar-fill" id="prog-bar"></div>
                 </div>
-                <div class="gp-bar-labels">
-                    <span>0%</span><span>50%</span><span>100%</span>
-                </div>
+                <div class="gp-bar-labels"><span>0%</span><span>50%</span><span>100%</span></div>
             </div>
             <div class="gp-pct" id="prog-pct" aria-live="polite">0%</div>
         </div>
@@ -74,11 +76,201 @@
                 id="tab-checklist" onclick="checklist.switchTab('checklist')">
                 <i class="ti ti-checkbox" aria-hidden="true"></i> Checklist
             </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-sequence" id="tab-sequence"
+                onclick="checklist.switchTab('sequence')">
+                <i class="ti ti-list-numbers" aria-hidden="true"></i> Study Sequence
+            </button>
         </div>
 
         <!-- Checklist panel -->
         <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <!-- Study Notes card -->
+            <a href="./notes.html" class="notes-card" aria-label="Open study notes for E-Commerce & ERP">
+                <div class="notes-card-icon">
+                    <i class="ti ti-notebook" aria-hidden="true"></i>
+                </div>
+                <div class="notes-card-body">
+                    <div class="notes-card-title">Study Notes</div>
+                    <div class="notes-card-sub">Complete notes for all units — definitions, comparison tables, and key diagrams</div>
+                </div>
+                <div class="notes-card-action">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i> Open Notes
+                </div>
+            </a>
+            <!-- Solved Papers card -->
+            <a href="./pyq.html" class="notes-card" aria-label="Open solved previous-year papers" style="margin-top:10px;">
+                <div class="notes-card-icon">
+                    <i class="ti ti-file-stack" aria-hidden="true"></i>
+                </div>
+                <div class="notes-card-body">
+                    <div class="notes-card-title">Solved Papers &amp; Predictions</div>
+                    <div class="notes-card-sub">3 MAKAUT papers solved Group A→B→C plus pattern analysis and predicted questions</div>
+                </div>
+                <div class="notes-card-action">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i> Open Papers
+                </div>
+            </a>
+
+            <div class="legend" aria-label="Legend">
+                <span class="legend-label">Priority:</span>
+                <span class="grp-badge grp1">must do</span>
+                <span class="grp-badge grp2">high</span>
+                <span class="grp-badge grp3">medium</span>
+                <span class="grp-badge grp4">optional</span>
+                <span class="legend-label" style="margin-left:6px">Familiarity:</span>
+                <span class="priority-tag p-new">new</span>
+                <span class="priority-tag p-revise">revise</span>
+                <span class="priority-tag p-strong">strong</span>
+            </div>
             <div id="sections-container"></div>
+        </div>
+
+        <!-- Study Sequence panel -->
+        <div class="panel" id="panel-sequence" role="tabpanel" aria-labelledby="tab-sequence">
+            <div class="seq-grid">
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#b91c1c;">
+                        <span class="grp-badge grp1">must do</span>
+                        Build the foundation first
+                    </div>
+
+                    <div class="seq-group-label">Step 1 — E-Commerce Basics</div>
+                    <div class="seq-step"><span class="seq-num">1.</span>
+                        <div>
+                            <div class="seq-step-text">E-Commerce vs E-Business distinction &amp; benefits</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">2.</span>
+                        <div>
+                            <div class="seq-step-text">Features of E-Commerce (Ubiquity, Richness, etc.)</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 2 — Business Models &amp; Strategy</div>
+                    <div class="seq-step"><span class="seq-num">3.</span>
+                        <div>
+                            <div class="seq-step-text">B2B, B2C, C2B, C2C business models + examples</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">4.</span>
+                        <div>
+                            <div class="seq-step-text">E-Governance (G2B/B2G) &amp; challenges in India</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 3 — E-Payment Mechanisms</div>
+                    <div class="seq-step"><span class="seq-num">5.</span>
+                        <div>
+                            <div class="seq-step-text">5 types of E-Payments (Credit, Debit, E-Cash, E-Cheque, UPI)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">6.</span>
+                        <div>
+                            <div class="seq-step-text">SET Protocol for credit card transaction security</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#065f46;">
+                        <span class="grp-badge grp2">high weightage</span>
+                        Core Modules &amp; Systems
+                    </div>
+
+                    <div class="seq-group-label">Step 4 — ERP (Highest Weightage)</div>
+                    <div class="seq-step"><span class="seq-num">7.</span>
+                        <div>
+                            <div class="seq-step-text">What is ERP &amp; core business modules</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">8.</span>
+                        <div>
+                            <div class="seq-step-text">Business Process Re-engineering (BPR) before ERP</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">9.</span>
+                        <div>
+                            <div class="seq-step-text">ERP and SCM integration + EAI</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 5 — SCM &amp; EDI</div>
+                    <div class="seq-step"><span class="seq-num">10.</span>
+                        <div>
+                            <div class="seq-step-text">SCM planning (SCP) vs SCM execution (SCE)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">11.</span>
+                        <div>
+                            <div class="seq-step-text">Vendor Managed Inventory (VMI) &amp; EOQ formula</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">12.</span>
+                        <div>
+                            <div class="seq-step-text">EDI Model, basic components &amp; EDIFACT vs ANSI X12</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#1d4ed8;">
+                        <span class="grp-badge grp3">medium + security</span>
+                        Security &amp; Marketing
+                    </div>
+
+                    <div class="seq-group-label">Step 6 — Security &amp; Risks</div>
+                    <div class="seq-step"><span class="seq-num">13.</span>
+                        <div>
+                            <div class="seq-step-text">Symmetric vs Asymmetric Cryptography (DES vs RSA)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">14.</span>
+                        <div>
+                            <div class="seq-step-text">RSA Algorithm working steps (numerical calculation flow)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">15.</span>
+                        <div>
+                            <div class="seq-step-text">Digital Signatures vs Digital Certificates + CRL</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">16.</span>
+                        <div>
+                            <div class="seq-step-text">Firewalls &amp; SSL services</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 7 — 4 C's &amp; E-Marketing</div>
+                    <div class="seq-step"><span class="seq-num">17.</span>
+                        <div>
+                            <div class="seq-step-text">Define 4 C's (Convergence, Collaboration, Content, Call Center)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">18.</span>
+                        <div>
+                            <div class="seq-step-text">Customer Premises Equipment (CPE) &amp; Call Center operations</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">19.</span>
+                        <div>
+                            <div class="seq-step-text">E-Marketing vs Traditional Marketing + strategies (cart reminders, etc.)</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="seq-tip">
+                <strong>Why this order?</strong>
+                Start with <em>e-commerce basics and business models</em> to understand the commercial landscape.
+                Move directly to <em>ERP</em> as it has the highest marks distribution in Group C (usually 15-20 marks).
+                Study <em>SCM &amp; EDI</em> next, as they represent the operational back-end of e-commerce.
+                Finish with <em>Security and E-Marketing</em> which are highly technical but predictable.
+                <br><br>
+                <strong>Diagrams to practice freehand:</strong>
+                EDI Model vs Traditional Model · Internet vs Intranet vs Extranet Venn · RSA Key Exchange · B2B Architectural Model · SCM Portal Architecture
+            </div>
         </div>
 
     </main>
@@ -86,7 +278,182 @@
     <script>
         window.subjectId = 'e-comm';
         window.examDate = '2 July 2026';
-        window.checklistData = [];
+        window.checklistData = [
+            /* ── 1. OVERVIEW OF E-COMMERCE ── */
+            {
+                id: 'ecom-overview',
+                title: 'Overview, Advantages & Disadvantages of E-Commerce',
+                notesId: '1-1-what-is-e-commerce',
+                group: 1, tag: 'strong',
+                items: [
+                    'Definition of E-Commerce',
+                    'E-Commerce vs E-Business — comparison table',
+                    'Advantages of E-Commerce (org / customer / society)',
+                    'Disadvantages of E-Commerce',
+                    'Tangible vs Intangible benefits of e-business',
+                    'Threats of E-Commerce (phishing, malware, DoS, fraud)',
+                    'Managerial perspective on E-Commerce adoption',
+                    'Rules, regulations & cyber laws controlling E-Commerce (IT Act 2000)'
+                ]
+            },
+            /* ── 2. NETWORKING & TECHNOLOGIES ── */
+            {
+                id: 'networking-tech',
+                title: 'Networking, Internet/Intranet/Extranet & WAP',
+                notesId: '2-1-relationship-between-e-commerce-networking',
+                group: 1, tag: 'strong',
+                items: [
+                    'Relationship between E-Commerce and Networking',
+                    'Internet vs Intranet vs Extranet — comparison table (draw this)',
+                    'Different types of networking commerce',
+                    'EDI systems — introductory definition',
+                    'WAP — definition + 3 limitations for mobile computing',
+                    'Hand-held devices, mobility & commerce — 2 applications of M-Commerce',
+                    'Mobile Computing — definition and components',
+                    'Infrastructure requirements for E-Commerce'
+                ]
+            },
+            /* ── 3. BUSINESS MODELS ── */
+            {
+                id: 'business-models',
+                title: 'E-Commerce Business Models',
+                notesId: '3-1-models-based-on-transaction-type',
+                group: 1, tag: 'strong',
+                items: [
+                    'Models based on transaction type (Brokerage, Advertising, Subscription, Merchant)',
+                    'B2B, B2C, C2B, C2C — definitions + examples',
+                    'B2B vs B2C — full comparison table',
+                    'Key technologies of B2B E-Commerce (EDI, Extranet, ERP)',
+                    'Architectural model of B2B E-Commerce',
+                    'E-Governance — definition',
+                    'Challenges of E-Governance in India'
+                ]
+            },
+            /* ── 4. E-STRATEGY ── */
+            {
+                id: 'e-strategy',
+                title: 'E-Strategy & Development',
+                notesId: '4-1-overview-of-e-strategy',
+                group: 3, tag: 'revise',
+                items: [
+                    'Overview of E-strategy — definition and purpose',
+                    'Strategic methods for developing E-Commerce',
+                    'SWOT analysis in e-strategy planning',
+                    'Phased implementation approach',
+                    'Performance measurement / KPIs for e-strategy'
+                ]
+            },
+            /* ── 5. FOUR C'S OF E-COMMERCE ── */
+            {
+                id: 'four-cs',
+                title: "The Four C's — Convergence, Collaborative Computing, Content Mgmt, Call Center",
+                notesId: '5-1-convergence',
+                group: 1, tag: 'strong',
+                items: [
+                    'Convergence — definition, types, implications, link to e-commerce',
+                    'Collaborative Computing — product development, CAD contracts, simultaneous collaboration, security',
+                    'Content Management — authoring tools, repositories, content partnership, content marketing',
+                    'Web traffic & traffic management',
+                    'Call Center — definition, need, tasks handled',
+                    'Modes of operation of call center (inbound/outbound/blended/virtual)',
+                    'Call center equipment (ACD, IVR, CTI)',
+                    'Strengths & weaknesses of call centers',
+                    'Customer Premises Equipment (CPE) — definition + examples'
+                ]
+            },
+            /* ── 6. SUPPLY CHAIN MANAGEMENT ── */
+            {
+                id: 'scm',
+                title: 'Supply Chain Management (SCM)',
+                notesId: '7-1-what-is-supply-chain-management',
+                group: 1, tag: 'strong',
+                items: [
+                    'Definition of SCM + why vital for E-Commerce',
+                    'E-logistics — definition',
+                    'Supply Chain Portal — how it helps manage supply chain',
+                    'SCP vs SCE — full comparison table (high yield)',
+                    'SCE Framework components',
+                    "Internet's effect on supply chain power (disintermediation, transparency)"
+                ]
+            },
+            /* ── 7. E-PAYMENT MECHANISM ── */
+            {
+                id: 'e-payment',
+                title: 'E-Payment Mechanism',
+                notesId: '8-1-overview-of-e-payment-systems',
+                group: 1, tag: 'strong',
+                items: [
+                    'Types of card payments: Credit, Debit, Stored-value, Smart card',
+                    'SET protocol — what it is used for',
+                    'E-Cheque — definition and how it works',
+                    'E-Cash / Digital Cash — characteristics',
+                    'How online banking enables e-cash transactions',
+                    'E-Payment threats & protection mechanisms — pair each threat with defense',
+                    'Cryptocurrency as an e-payment mechanism — pros/cons',
+                    'Explain any 5 types of Electronic Payment Systems (practice full answer)'
+                ]
+            },
+            /* ── 8. E-MARKETING & EDI ── */
+            {
+                id: 'e-marketing-edi',
+                title: 'E-Marketing & Electronic Data Interchange (EDI)',
+                notesId: '9-1-home-shopping',
+                group: 1, tag: 'strong',
+                items: [
+                    'Home-shopping — definition and evolution',
+                    'E-Marketing — advantages & disadvantages over normal marketing',
+                    'Cart reminders — how used in e-marketing',
+                    'Tele-marketing — definition, inbound vs outbound',
+                    'EDI — meaning, benefits, basic components',
+                    'EDI architecture / communication model flow (DRAW THIS)',
+                    'Steps in EDI implementation',
+                    'Role of EDI in E-Commerce (B2B backbone)',
+                    'UN/EDIFACT vs ANSI X12 — comparison table'
+                ]
+            },
+            /* ── 9. SECURITY, RISK & CRYPTOGRAPHY ── */
+            {
+                id: 'security-crypto',
+                title: 'Risk of E-Commerce: Security, Cryptography & Certificates',
+                notesId: '11-1-overview-of-e-commerce-risk-security',
+                group: 1, tag: 'strong',
+                items: [
+                    'Core security requirements (Confidentiality, Integrity, Authentication, Non-repudiation, Availability)',
+                    'Firewall — definition + functions (asked EVERY year, know cold)',
+                    'DoS attacks — definition',
+                    'DES vs RSA — full comparison table',
+                    'RSA algorithm — memorize all 8 steps',
+                    'Public key vs Private key cryptography — comparison table',
+                    'Key management — lifecycle and challenges',
+                    'Password systems & MFA/2FA',
+                    'Digital certificates — definition + CRL (Certificate Revocation List)',
+                    'Digital signature — definition + how it works (5-step verification flow)',
+                    'Digital signature vs Digital certificate — comparison table',
+                    'Services provided by SSL (encryption, authentication, integrity)'
+                ]
+            },
+            /* ── 10. ERP ── */
+            {
+                id: 'erp',
+                title: 'Enterprise Resource Planning (ERP)',
+                notesId: '12-1-what-is-erp',
+                group: 1, tag: 'strong',
+                items: [
+                    'Definition of ERP + features/capabilities',
+                    'Reasons for growth of ERP market',
+                    'Advantages of ERP system',
+                    'BPR — definition + why required prior to ERP implementation',
+                    'BPR vs BPD (Business Process Redesign) — comparison',
+                    'Knowledge engineering & data warehouse — definitions',
+                    'ERP business modules — Finance, Manufacturing, HR, Plant Maintenance, Materials Mgmt, Quality Mgmt, Sales & Distribution',
+                    'ERP market vendors — SAP, PeopleSoft, BAAN, JD Edwards, Oracle',
+                    'EAI (Enterprise Application Integration) — definition',
+                    'ERP and E-Commerce — how they integrate (comparison table)',
+                    'ERP and Internet — cloud/SaaS ERP',
+                    'Future directions in ERP (AI, IoT, mobile, cloud)'
+                ]
+            }
+        ];
     </script>
     <script src="../checklist.js"></script>
 </body>
