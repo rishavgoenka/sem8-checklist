@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Security Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../theme.js"></script>
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+
+
+<body>
+
+    <header class="page-header">
+        <div class="header-inner">
+            <div class="header-title-container">
+                <a href="../" class="back-btn" aria-label="Go back to home">
+                    <i class="ti ti-arrow-left" aria-hidden="true"></i>
+                </a>
+                <div class="header-title-wrapper">
+                    <div class="header-title">
+                        <i class="ti ti-shield-lock" aria-hidden="true"></i>
+                        Cyber Security
+                    </div>
+                    <div class="header-sub">VMSBUTU · Progress saved in your browser — pick up where you left off</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="themeManager.toggle()" aria-label="Toggle theme">
+                    <i class="ti ti-moon theme-toggle-icon" aria-hidden="true"></i>
+                    <span class="theme-toggle-label">Dark Mode</span>
+                </button>
+                <a href="./notes.html" class="reset-btn" style="text-decoration: none;" aria-label="View study notes">
+                    <i class="ti ti-book" aria-hidden="true"></i> Study Notes
+                </a>
+                <button class="reset-btn" onclick="checklist.confirmReset()" aria-label="Reset all progress">
+                    <i class="ti ti-refresh" aria-hidden="true"></i> Reset progress
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" role="main">
+
+        <!-- Global progress -->
+        <div class="global-progress" aria-label="Overall progress">
+            <div>
+                <div class="gp-stat-label">completed</div>
+                <div class="gp-stat-num"><span id="done-count">0</span> / <span id="total-count">0</span></div>
+            </div>
+            <div class="gp-bar-wrap">
+                <div class="gp-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                     id="prog-aria">
+                    <div class="gp-bar-fill" id="prog-bar"></div>
+                </div>
+                <div class="gp-bar-labels"><span>0%</span><span>50%</span><span>100%</span></div>
+            </div>
+            <div class="gp-pct" id="prog-pct" aria-live="polite">0%</div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-checklist"
+                id="tab-checklist" onclick="checklist.switchTab('checklist')">
+                <i class="ti ti-checkbox" aria-hidden="true"></i> Checklist
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-sequence" id="tab-sequence"
+                onclick="checklist.switchTab('sequence')">
+                <i class="ti ti-list-numbers" aria-hidden="true"></i> Study Sequence
+            </button>
+        </div>
+
+        <!-- Checklist panel -->
+        <div class="panel active" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist">
+            <!-- Study Notes card -->
+            <a href="./notes.html" class="notes-card" aria-label="Open study notes for Cyber Security">
+                <div class="notes-card-icon">
+                    <i class="ti ti-notebook" aria-hidden="true"></i>
+                </div>
+                <div class="notes-card-body">
+                    <div class="notes-card-title">Study Notes</div>
+                    <div class="notes-card-sub">Complete notes for all 5 units — definitions, comparison tables, IT Act sections</div>
+                </div>
+                <div class="notes-card-action">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i> Open Notes
+                </div>
+            </a>
+            <div class="legend" aria-label="Legend">
+                <span class="legend-label">Priority:</span>
+                <span class="grp-badge grp1">must do</span>
+                <span class="grp-badge grp2">high</span>
+                <span class="grp-badge grp3">medium</span>
+                <span class="grp-badge grp4">optional</span>
+                <span class="legend-label" style="margin-left:6px">Familiarity:</span>
+                <span class="priority-tag p-new">new</span>
+                <span class="priority-tag p-revise">revise</span>
+                <span class="priority-tag p-strong">strong</span>
+            </div>
+            <div id="sections-container"></div>
+        </div>
+
+        <!-- Study Sequence panel -->
+        <div class="panel" id="panel-sequence" role="tabpanel" aria-labelledby="tab-sequence">
+            <div class="seq-grid">
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#b91c1c;">
+                        <span class="grp-badge grp1">must do</span>
+                        Unit 1 — Foundations
+                    </div>
+
+                    <div class="seq-group-label">Step 1 — Core Concepts</div>
+                    <div class="seq-step"><span class="seq-num">1.</span>
+                        <div>
+                            <div class="seq-step-text">Cyber security definition, goals (CIA + authenticity + non-repudiation)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">2.</span>
+                        <div>
+                            <div class="seq-step-text">Layers of security / defense in depth — all 8 layers</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">3.</span>
+                        <div>
+                            <div class="seq-step-text">Vulnerability vs Threat vs Risk — relationship</div>
+                            <div class="seq-step-note">Classic short-answer trap — know the exact chain</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 2 — Attacks</div>
+                    <div class="seq-step"><span class="seq-num">4.</span>
+                        <div>
+                            <div class="seq-step-text">Active vs Passive attack — comparison table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">5.</span>
+                        <div>
+                            <div class="seq-step-text">Software vs Hardware attacks — draw the distinction clearly</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">6.</span>
+                        <div>
+                            <div class="seq-step-text">Spectrum and Taxonomy of attacks</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">7.</span>
+                        <div>
+                            <div class="seq-step-text">IP Spoofing — how it works, types, defenses</div>
+                            <div class="seq-step-note">Likely long-answer/diagram question</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 3 — Defense & Risk</div>
+                    <div class="seq-step"><span class="seq-num">8.</span>
+                        <div>
+                            <div class="seq-step-text">Methods of defense — preventive/detective/corrective/deterrent</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">9.</span>
+                        <div>
+                            <div class="seq-step-text">Security Models — Bell-LaPadula, Biba, Clark-Wilson, DAC/MAC/RBAC</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">10.</span>
+                        <div>
+                            <div class="seq-step-text">Risk management process + SLE/ARO/ALE</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">11.</span>
+                        <div>
+                            <div class="seq-step-text">Cyber warfare, cyber crime, cyber terrorism, cyber espionage — distinguish</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#92400e;">
+                        <span class="grp-badge grp2">high</span>
+                        Unit 2 &amp; 3 — Forensics + Mobile
+                    </div>
+
+                    <div class="seq-group-label">Step 4 — Cyber Forensics</div>
+                    <div class="seq-step"><span class="seq-num">12.</span>
+                        <div>
+                            <div class="seq-step-text">Cyber forensics — definition, history, need</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">13.</span>
+                        <div>
+                            <div class="seq-step-text">Digital evidence — characteristics + handling rules (chain of custody)</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">14.</span>
+                        <div>
+                            <div class="seq-step-text">Email forensics — header analysis technique</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">15.</span>
+                        <div>
+                            <div class="seq-step-text">Digital Forensics Lifecycle — 7 phases (memorise the order)</div>
+                            <div class="seq-step-note">"Identify → Preserve → Collect → Examine → Analyse → Document → Present"</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">16.</span>
+                        <div>
+                            <div class="seq-step-text">Challenges in computer forensics + special auditing techniques</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 5 — Mobile &amp; Wireless</div>
+                    <div class="seq-step"><span class="seq-num">17.</span>
+                        <div>
+                            <div class="seq-step-text">Proliferation/trends in mobility + mobile credit card fraud</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">18.</span>
+                        <div>
+                            <div class="seq-step-text">Security challenges of mobile devices + registry/config settings</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">19.</span>
+                        <div>
+                            <div class="seq-step-text">Authentication service security — factors, mechanisms, risks</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">20.</span>
+                        <div>
+                            <div class="seq-step-text">Attacks on mobile phones + Bluetooth attack table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">21.</span>
+                        <div>
+                            <div class="seq-step-text">Organizational measures/policies for mobile + laptop/desktop security</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seq-card">
+                    <div class="seq-day-title" style="color:#065f46;">
+                        <span class="grp-badge grp3">medium</span>
+                        Unit 4 &amp; 5 — Organizational + Law
+                    </div>
+
+                    <div class="seq-group-label">Step 6 — Organizational Implications</div>
+                    <div class="seq-step"><span class="seq-num">22.</span>
+                        <div>
+                            <div class="seq-step-text">Cost of cybercrime + IPR issues + web threats for organizations</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">23.</span>
+                        <div>
+                            <div class="seq-step-text">Social media marketing risks + social computing challenges</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">24.</span>
+                        <div>
+                            <div class="seq-step-text">IP in cyberspace, ethical dimension, hacker psychology &amp; skills</div>
+                        </div>
+                    </div>
+
+                    <div class="seq-group-label">Step 7 — Cyberspace &amp; Law</div>
+                    <div class="seq-step"><span class="seq-num">25.</span>
+                        <div>
+                            <div class="seq-step-text">Cyber security regulations + international law frameworks</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">26.</span>
+                        <div>
+                            <div class="seq-step-text">Indian cyberspace + National Cyber Security Policy 2013</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">27.</span>
+                        <div>
+                            <div class="seq-step-text">Internet governance challenges + computer criminals/assets/threats</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">28.</span>
+                        <div>
+                            <div class="seq-step-text">IT Act offences table (Sec 43–79) + electronic evidence + Sec 65B</div>
+                            <div class="seq-step-note">Prepare a sections → offence → punishment table</div>
+                        </div>
+                    </div>
+                    <div class="seq-step"><span class="seq-num">29.</span>
+                        <div>
+                            <div class="seq-step-text">Miscellaneous IT Act provisions (post-2008 amendment)</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="seq-tip">
+                <strong>Why this order?</strong>
+                Unit 1 builds the vocabulary (threat, vulnerability, risk, attack types, defenses) that every later unit assumes you already know.
+                Forensics (Unit 2) comes next because "how evidence is gathered" underpins the legal discussion in Unit 5.
+                Mobile security (Unit 3) is grouped with forensics since both are highly practical, example-driven units.
+                Organizational implications (Unit 4) and Law (Unit 5) come last — they build on the technical foundation to discuss cost, ethics, and legal consequences.
+                <br><br>
+                <strong>Diagrams to practice freehand:</strong>
+                Defense-in-depth layered diagram · Digital Forensics Lifecycle (7 phases) · PKI/security model access diagrams · Bluetooth attack severity chart · IT Act sections → punishment table
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        window.subjectId = 'cyber-security';
+        window.checklistData = [
+            /* ── UNIT 1 ── */
+            {
+                id: 'basic-concepts',
+                title: 'Basic Concepts, Layers of Security & CIA Triad',
+                notesId: '1-1-basic-cyber-security-concepts',
+                group: 1, tag: 'revise',
+                items: [
+                    'Definition of cyber security and why it matters',
+                    'Core security goals: confidentiality, integrity, availability, authenticity, non-repudiation',
+                    'Elements/building blocks of cyber security (app, info, network, DR/BCP, OPSEC, end-user education)',
+                    'Layers of security / defense in depth — all 8 layers',
+                    'CIA Triad — confidentiality, integrity, availability with examples of threats/controls'
+                ]
+            },
+            {
+                id: 'vuln-threat-risk',
+                title: 'Vulnerability, Threat, Risk & Attacker Motives',
+                notesId: '1-3-vulnerability-threat-and-risk',
+                group: 1, tag: 'new',
+                items: [
+                    'Vulnerability vs Threat vs Threat Agent vs Attack vs Risk vs Impact — definitions',
+                    'Relationship between threat, vulnerability, and risk',
+                    'Harmful acts — definition',
+                    'Motives behind cyber attacks (financial, espionage, hacktivism, revenge, curiosity, sabotage, terrorism)',
+                    'Types of attackers (white/black/grey hat, script kiddie, hacktivist, insider, nation-state, cyber-terrorist)'
+                ]
+            },
+            {
+                id: 'attack-types',
+                title: 'Active/Passive, Software/Hardware Attacks, Spectrum & Taxonomy',
+                notesId: '1-5-active-vs-passive-attacks',
+                group: 1, tag: 'revise',
+                items: [
+                    'Active vs Passive attack — comparison table',
+                    'Software attacks — malware, SQLi/XSS, DoS/DDoS, phishing payloads',
+                    'Hardware attacks — hardware trojans, side-channel, firmware, supply chain, physical tampering',
+                    'Spectrum of attacks — skill/funding/persistence/target/intent dimensions',
+                    'Taxonomy of attacks — by target, method (interception/interruption/modification/fabrication), origin, vector'
+                ]
+            },
+            {
+                id: 'ip-spoofing-defense',
+                title: 'IP Spoofing & Methods of Defense',
+                notesId: '1-9-ip-spoofing',
+                group: 2, tag: 'new',
+                items: [
+                    'IP Spoofing — definition and how it works',
+                    'Types: non-blind, blind, DDoS-amplification, MITM spoofing',
+                    'Why attackers use IP spoofing',
+                    'Defense against IP spoofing — ingress/egress filtering, BCP 38, strong authentication',
+                    'Methods of defense — preventive/detective/corrective/deterrent/compensating controls',
+                    'General defensive principles — least privilege, defense in depth, fail-safe defaults, separation of duties'
+                ]
+            },
+            {
+                id: 'security-models-risk-mgmt',
+                title: 'Security Models & Risk Management',
+                notesId: '1-11-security-models',
+                group: 2, tag: 'new',
+                items: [
+                    'Bell-LaPadula model (confidentiality, no read up/no write down)',
+                    'Biba model (integrity, no write up/no read down)',
+                    'Clark-Wilson model, Access Control Matrix, Chinese Wall model',
+                    'DAC vs MAC vs RBAC vs ABAC',
+                    'Risk management process — identification, assessment, evaluation, treatment, monitoring',
+                    'Risk treatment strategies — avoidance, mitigation, transfer, acceptance',
+                    'SLE, ARO, ALE formulas'
+                ]
+            },
+            {
+                id: 'cyber-warfare-espionage',
+                title: 'Cyber Threats, Cyber Warfare, Crime, Terrorism & Espionage',
+                notesId: '1-13-cyber-threats-and-cyber-warfare',
+                group: 2, tag: 'revise',
+                items: [
+                    'Cyber threat — definition',
+                    'Cyber warfare — definition, actors, targets, Stuxnet example',
+                    'Cyber crime vs cyber terrorism vs cyber espionage — distinguish all three'
+                ]
+            },
+            /* ── UNIT 2 ── */
+            {
+                id: 'forensics-intro',
+                title: 'Introduction & History of Cyber Forensics',
+                notesId: '2-1-introduction-to-cyber-forensics',
+                group: 1, tag: 'new',
+                items: [
+                    'Definition of cyber/computer/digital forensics',
+                    'Chain of custody — what it means and why it matters',
+                    'Historical background — FBI CART, 1990s tool development',
+                    "Digital forensics science — Locard's exchange principle, repeatability, documentation, objectivity",
+                    'Need for computer forensics (prosecution, civil litigation, incident response, compliance)'
+                ]
+            },
+            {
+                id: 'digital-evidence-email',
+                title: 'Digital Evidence & Email Forensics',
+                notesId: '2-5-cyber-forensics-and-digital-evidence',
+                group: 1, tag: 'new',
+                items: [
+                    'Digital evidence — definition and characteristics (latent, fragile, cross-border, duplicable, time-sensitive)',
+                    'Volatile vs non-volatile vs network vs cloud evidence',
+                    'Rules for handling digital evidence (chain of custody, write-blocking, hashing, work on copies, legal authorisation)',
+                    'Email forensics — headers, Message-ID, X-Originating-IP, attachments, timestamps',
+                    'Email forensic techniques — header analysis, server-side investigation, fingerprinting, bait tracing'
+                ]
+            },
+            {
+                id: 'forensics-lifecycle-investigation',
+                title: 'Digital Forensics Lifecycle & Investigation',
+                notesId: '2-7-digital-forensics-lifecycle',
+                group: 1, tag: 'new',
+                items: [
+                    '7 phases: identification, preservation, collection, examination, analysis, documentation, presentation',
+                    'Types of forensic investigation — disk, network, mobile, memory, cloud, database, email',
+                    'Approach to a forensic investigation — step by step',
+                    'Common forensic tools (EnCase, FTK, Autopsy, Wireshark, Volatility, Cellebrite)'
+                ]
+            },
+            {
+                id: 'forensics-challenges-auditing',
+                title: 'Challenges in Computer Forensics & Forensic Auditing',
+                notesId: '2-9-challenges-in-computer-forensics',
+                group: 2, tag: 'new',
+                items: [
+                    'Challenges — data volume, encryption, anti-forensics, volatility, jurisdiction, evolving tech, chain of custody, cost/skill shortage',
+                    'Forensic auditing — definition',
+                    'Special techniques — data mining, log correlation, metadata analysis, steganalysis, timeline analysis, live forensics, hash-based ID, registry/artifact analysis'
+                ]
+            },
+            /* ── UNIT 3 ── */
+            {
+                id: 'mobile-proliferation-trends',
+                title: 'Proliferation & Trends in Mobile/Wireless Computing',
+                notesId: '3-2-proliferation-of-mobile-and-wireless-devices',
+                group: 2, tag: 'new',
+                items: [
+                    'Proliferation of mobile & wireless devices — BYOD, IoT growth',
+                    'Trends in mobility — mobile cloud computing, mobile payments, always-on connectivity, wearables/IoT, 5G',
+                    'Credit card fraud in mobile/wireless era — smishing, rogue Wi-Fi, NFC skimming, fake apps, SIM swap',
+                    'Prevention — SET, OTP, tokenization, SSL/TLS, 3D Secure, EMV chip'
+                ]
+            },
+            {
+                id: 'mobile-security-challenges',
+                title: 'Mobile Security Challenges, Registry Settings & Authentication',
+                notesId: '3-5-security-challenges-posed-by-mobile-devices',
+                group: 2, tag: 'revise',
+                items: [
+                    'Security challenges posed by mobile devices (8 challenges)',
+                    'Registry/configuration settings for mobile devices — auto-lock, discoverability, remote wipe flags, USB debugging, app install policy, encryption enforcement, PIN policy',
+                    'Authentication factors — know/have/are/somewhere/do',
+                    'Authentication mechanisms — password, OTP, biometric, MFA, certificate-based, SSO',
+                    'Security risks in mobile authentication — SIM swap, SS7, OTP phishing, weak biometrics, session token theft'
+                ]
+            },
+            {
+                id: 'mobile-attacks-org',
+                title: 'Attacks on Mobile Phones & Organizational Measures',
+                notesId: '3-8-attacks-on-mobile-cell-phones',
+                group: 2, tag: 'revise',
+                items: [
+                    'Attacks on mobile/cell phones — physical theft, SIM swap, IMSI catcher, SS7 exploit, malware, rogue Wi-Fi, clipboard hijacking',
+                    'Bluetooth attacks quick reference — Bluejacking/Bluesnarfing/Bluebugging/BlueSmack',
+                    'Security implications for organizations — data leakage, visibility loss, compliance, attack surface, insider threat',
+                    'Organizational measures for handling mobile devices — MDM, containerisation, encryption, app whitelisting, patch compliance, VPN, remote wipe',
+                    'Organizational security policies — AUP, BYOD policy, access control policy, incident reporting, data classification, offboarding, audits',
+                    'Laptop and desktop security measures — disk encryption, EDR, host firewall, patching, secure boot, physical security, least privilege, backups'
+                ]
+            },
+            /* ── UNIT 4 ── */
+            {
+                id: 'org-cost-ipr',
+                title: 'Cost of Cybercrime, IPR & Web Threats for Organizations',
+                notesId: '4-1-introduction-cost-of-cybercrimes-and-ipr-issues',
+                group: 2, tag: 'new',
+                items: [
+                    'Cost of cybercrime to organizations — direct loss, incident response cost, regulatory fines, downtime, reputational damage, insurance, competitive loss, churn',
+                    'IPR issues in cyber security — software, trade secrets, trademarks, digital content, patents',
+                    'Web threats for organizations — defacement, SQLi, DDoS, drive-by downloads, credential stuffing, supply chain, BEC',
+                    'Security and privacy implications — regulatory exposure, customer trust, employee monitoring, vendor risk, cross-border transfer'
+                ]
+            },
+            {
+                id: 'social-media-computing',
+                title: 'Social Media Marketing & Social Computing Risks',
+                notesId: '4-4-social-media-marketing-security-risks-and-perils-for-organizations',
+                group: 3, tag: 'new',
+                items: [
+                    'Social media marketing risks — account takeover, brand impersonation, oversharing, OSINT recon, malicious comments, reputational risk, ad targeting privacy',
+                    'Social computing — definition',
+                    'Social computing challenges — info leakage, identity/trust management, data aggregation, malware propagation, moderation at scale, personal/professional blur, platform dependency'
+                ]
+            },
+            {
+                id: 'hacker-psychology-ethics',
+                title: 'IP in Cyberspace, Ethical Dimension & Hacker Psychology',
+                notesId: '4-7-intellectual-property-in-cyberspace',
+                group: 3, tag: 'new',
+                items: [
+                    'Cybercrime and cyber terrorism — organizational lens (critical infrastructure)',
+                    'Intellectual property in cyberspace — ease of copying, jurisdiction, anonymity, DRM, open-source licensing, domain disputes',
+                    'Ethical dimension of cybercrimes — moral distancing, diffusion of responsibility, grey areas, dual-use tools, whistleblowing vs theft',
+                    'Hacker types recap — white/black/grey hat, script kiddie, hacktivist',
+                    'Psychology/mindset of hackers — curiosity, power, low empathy, reputation seeking, rationalisation, risk tolerance, patience',
+                    'Skills of cybercriminals — technical, social engineering, anonymity tools, reverse engineering, OPSEC'
+                ]
+            },
+            /* ── UNIT 5 ── */
+            {
+                id: 'regulations-intl-law',
+                title: 'Cyber Security Regulations, International Law & Indian Cyberspace',
+                notesId: '5-1-introduction-to-cyber-security-regulations',
+                group: 2, tag: 'new',
+                items: [
+                    'Why cyber security regulation is necessary',
+                    'International law/frameworks — Budapest Convention, UN GGE, ICANN, INTERPOL/Europol, MLATs, WIPO',
+                    'The Indian cyberspace — ITA-2000 basis, jurisdiction (Sec 1(2), Sec 75), regulatory bodies (MeitY, CERT-In, CCA), DPDPA 2023'
+                ]
+            },
+            {
+                id: 'national-policy-governance',
+                title: 'National Cyber Security Policy & Internet Governance',
+                notesId: '5-4-national-cyber-security-policy',
+                group: 2, tag: 'new',
+                items: [
+                    'National Cyber Security Policy 2013 — objectives',
+                    'Key institutions — CERT-In, NCIIPC, NCCC, I4C, sectoral CERTs',
+                    'Internet governance bodies — ICANN, IETF, W3C, national regulators',
+                    'Internet governance challenges — sovereignty vs openness, jurisdiction conflicts, free speech, net neutrality, digital divide, tech outpacing policy'
+                ]
+            },
+            {
+                id: 'criminals-assets-itact',
+                title: 'Computer Criminals, Assets, Threats & IT Act Offences',
+                notesId: '5-6-computer-criminals-assets-and-threats',
+                group: 1, tag: 'revise',
+                items: [
+                    'Computer criminals — recap typology',
+                    'Assets — data, hardware, software, network, people, reputation, facilities',
+                    'Threats to assets — natural, human unintentional, human intentional',
+                    'IT Act sections & offences — Sec 43, 43A, 65, 66, 66B–66F, 67/67A/67B, 69/69A, 70, 72/72A, 79',
+                    'Section 66A struck down — Shreya Singhal case'
+                ]
+            },
+            {
+                id: 'evidence-misc-provisions',
+                title: 'Electronic Evidence & Miscellaneous IT Act Provisions',
+                notesId: '5-8-the-role-of-electronic-evidence',
+                group: 1, tag: 'revise',
+                items: [
+                    'Section 65B Evidence Act — admissibility conditions',
+                    'Arjun Panditrao Khotkar case — mandatory certificate ruling',
+                    'Why electronic evidence is central to cybercrime cases',
+                    'Miscellaneous provisions post-2008 — Sec 79 overhaul, 66F, 43A, 69/69A/69B, 84A, 85, CAT, Sec 3A, Sec 77A, Sec 81'
+                ]
+            }
+        ];
+    </script>
+    <script src="../checklist.js"></script>
+
+</body>
+
+</html>
